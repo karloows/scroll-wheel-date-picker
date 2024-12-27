@@ -10,3 +10,14 @@ updates:
     open-pull-requests-limit: 10
     reviewers:
       - Fingertips18
+
+  - package-ecosystem: "pub"
+    directory: /example
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    open-pull-requests-limit: 10
+    reviewers:
+      - Fingertips18
