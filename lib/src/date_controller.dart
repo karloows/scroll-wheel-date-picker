@@ -14,40 +14,50 @@ class DateController with ChangeNotifier {
     DateTime? lastDate,
   }) {
     if (startDate != null && lastDate != null) {
-      assert(startDate.isBefore(lastDate), "Start date must be before last date.");
-      assert(lastDate.isAfter(startDate), "Last date must be after start date.");
+      assert(
+          startDate.isBefore(lastDate), "Start date must be before last date.");
+      assert(
+          lastDate.isAfter(startDate), "Last date must be after start date.");
     }
 
     if (startDate != null && lastDate == null) {
-      assert(startDate.isBefore(DateTime.parse(defaultLastDate)), "Start date must be before default last date.");
+      assert(startDate.isBefore(DateTime.parse(defaultLastDate)),
+          "Start date must be before default last date.");
     }
 
     if (startDate == null && lastDate != null) {
-      assert(lastDate.isAfter(DateTime.parse(defaultStartDate)), "Last date must be before default last date.");
+      assert(lastDate.isAfter(DateTime.parse(defaultStartDate)),
+          "Last date must be before default last date.");
     }
 
     if (startDate != null && initialDate != null) {
-      assert(initialDate.isAfter(startDate), "Initial date must be after the provided start date.");
+      assert(initialDate.isAfter(startDate),
+          "Initial date must be after the provided start date.");
     }
 
     if (startDate == null && initialDate != null) {
-      assert(initialDate.isAfter(DateTime.parse(defaultStartDate)), "Initial date must be after the default start date.");
+      assert(initialDate.isAfter(DateTime.parse(defaultStartDate)),
+          "Initial date must be after the default start date.");
     }
 
     if (startDate != null && initialDate == null) {
-      assert(DateTime.now().isAfter(startDate), "Start date must be before the initial date or `DateTime.now()`.");
+      assert(DateTime.now().isAfter(startDate),
+          "Start date must be before the initial date or `DateTime.now()`.");
     }
 
     if (lastDate != null && initialDate != null) {
-      assert(initialDate.isBefore(lastDate), "Initial date must be before the provided last date.");
+      assert(initialDate.isBefore(lastDate),
+          "Initial date must be before the provided last date.");
     }
 
     if (lastDate == null && initialDate != null) {
-      assert(initialDate.isBefore(DateTime.parse(defaultLastDate)), "Initial date must be before the default last date.");
+      assert(initialDate.isBefore(DateTime.parse(defaultLastDate)),
+          "Initial date must be before the default last date.");
     }
 
     if (lastDate != null && initialDate == null) {
-      assert(DateTime.now().isBefore(lastDate), "Last date must be after the initial date or `DateTime.now()`.");
+      assert(DateTime.now().isBefore(lastDate),
+          "Last date must be after the initial date or `DateTime.now()`.");
     }
 
     _initialDate = initialDate ?? DateTime.now();
@@ -224,19 +234,28 @@ class DateController with ChangeNotifier {
   /// Called when the [changeMonth] & [changeYear] is triggered.
   /// This is important so that the `total number of days` is updated when the month or year changes.
   void _updateNumberOfDays() {
-    final int numberOfDays = _getNumberOfDays(year: _yearController.selectedIndex, month: _monthController.selectedIndex);
+    final int year =
+        int.parse(_yearController.items[_yearController.selectedIndex]);
 
-    final int selectedIndex = _dayController.selectedIndex >= numberOfDays ? numberOfDays - 1 : _dayController.selectedIndex;
+    final int numberOfDays =
+        _getNumberOfDays(year: year, month: _monthController.selectedIndex);
 
-    _dayController = _dayController.copyWith(selectedIndex: selectedIndex, numberOfDays: numberOfDays);
+    final int selectedIndex = _dayController.selectedIndex >= numberOfDays
+        ? numberOfDays - 1
+        : _dayController.selectedIndex;
+
+    _dayController = _dayController.copyWith(
+        selectedIndex: selectedIndex, numberOfDays: numberOfDays);
 
     notifyListeners();
   }
 
   /// Called when the [initialDate] of the [ScrollWheelDatePicker] changed.
   void changeInitialDate(DateTime initialDate) {
-    assert(initialDate.isAfter(_startDate), "Initial date must be after the start date.");
-    assert(initialDate.isBefore(_lastDate), "Initial date must be before the last date.");
+    assert(initialDate.isAfter(_startDate),
+        "Initial date must be after the start date.");
+    assert(initialDate.isBefore(_lastDate),
+        "Initial date must be before the last date.");
 
     _initialDate = initialDate;
 
@@ -247,14 +266,17 @@ class DateController with ChangeNotifier {
         month: initialDate.month,
       ),
     );
-    _monthController = _monthController.copyWith(selectedIndex: initialDate.month - 1);
+    _monthController =
+        _monthController.copyWith(selectedIndex: initialDate.month - 1);
     _yearController = _yearController.copyWith(initialYear: initialDate.year);
   }
 
   /// Called when the [startDate] of the [ScrollWheelDatePicker] changed.
   void changeStartDate(DateTime startDate) {
-    assert(startDate.isBefore(_lastDate), "Start date must be before the last date.");
-    assert(startDate.isBefore(_initialDate), "Start date must be before the initial date.");
+    assert(startDate.isBefore(_lastDate),
+        "Start date must be before the last date.");
+    assert(startDate.isBefore(_initialDate),
+        "Start date must be before the initial date.");
 
     _startDate = startDate;
 
@@ -269,8 +291,10 @@ class DateController with ChangeNotifier {
 
   /// Called when the [lastDate] of the [ScrollWheelDatePicker] changed.
   void changeLastDate(DateTime lastDate) {
-    assert(lastDate.isAfter(_startDate), "Last date must be after the start date.");
-    assert(lastDate.isAfter(_initialDate), "Last date must be after the initial date.");
+    assert(lastDate.isAfter(_startDate),
+        "Last date must be after the start date.");
+    assert(lastDate.isAfter(_initialDate),
+        "Last date must be after the initial date.");
 
     _lastDate = lastDate;
 
@@ -308,7 +332,9 @@ class _DayController implements IDateController {
 
   factory _DayController({int? selectedIndex, int? numberOfDays}) {
     final List<String> days = _generateDays(
-      numberOfDays: numberOfDays ?? _getNumberOfDays(year: DateTime.now().year, month: DateTime.now().month),
+      numberOfDays: numberOfDays ??
+          _getNumberOfDays(
+              year: DateTime.now().year, month: DateTime.now().month),
     );
 
     return _DayController._(
@@ -433,7 +459,8 @@ class _YearController implements IDateController {
     }
 
     return _YearController._(
-      selectedIndex: selectedIndex ?? generatedYears.indexOf(DateTime.now().year.toString()),
+      selectedIndex: selectedIndex ??
+          generatedYears.indexOf(DateTime.now().year.toString()),
       startYear: start,
       lastYear: last,
       years: generatedYears,
@@ -469,7 +496,20 @@ int _getNumberOfDays({required int year, required int month}) {
     isLeapYear = ((year % 4 == 0) && (year % 100 != 0)) || year % 400 == 0;
   }
 
-  final List<int> daysInMonths = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  final List<int> daysInMonths = [
+    31,
+    isLeapYear ? 29 : 28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+  ];
 
   return daysInMonths[month];
 }
@@ -501,11 +541,14 @@ List<String> _generateDays({required int numberOfDays}) {
 List<String> _generateMonths({required MonthFormat monthFormat}) {
   switch (monthFormat) {
     case MonthFormat.threeLetters:
-      return List.generate(Month.values.length, (i) => _capitalize(Month.values[i].threeAbv));
+      return List.generate(
+          Month.values.length, (i) => _capitalize(Month.values[i].threeAbv));
     case MonthFormat.twoLetters:
-      return List.generate(Month.values.length, (i) => _capitalize(Month.values[i].twoAbv));
+      return List.generate(
+          Month.values.length, (i) => _capitalize(Month.values[i].twoAbv));
     default:
-      return List.generate(Month.values.length, (i) => _capitalize(Month.values[i].name));
+      return List.generate(
+          Month.values.length, (i) => _capitalize(Month.values[i].name));
   }
 }
 
@@ -515,7 +558,8 @@ List<String> _generateMonths({required MonthFormat monthFormat}) {
 ///
 /// Requires a [lastYear] to determine the end item of the list.
 List<String> _generateYears({required int startYear, required int lastYear}) {
-  return List.generate((lastYear + 1) - startYear, (i) => (startYear + i).toString());
+  return List.generate(
+      (lastYear + 1) - startYear, (i) => (startYear + i).toString());
 }
 
 /// Ensures that the month's first letter is an upper case.

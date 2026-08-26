@@ -1,0 +1,83 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches:
+      - main
+      - development
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "example/**"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+      - "analysis_options.yaml"
+      - ".github/workflows/pr-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    if: "!startsWith(github.head_ref, 'release-please--')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: flutter analyze
+      - run: flutter test
+
+  quality-example:
+    if: "!startsWith(github.head_ref, 'release-please--')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+      - run: flutter pub get
+        working-directory: example
+      - run: flutter analyze
+        working-directory: example
+      - run: flutter test
+        working-directory: example
+
+  dependency-review:
+    if: "!startsWith(github.head_ref, 'release-please--')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4.9.0
+
+  osv-scan:
+    if: "!startsWith(github.head_ref, 'release-please--')"
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      pull-requests: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@6e4298ebc4db23e847df9b2e2de2939d6f066c67 # v2.5.1
+    with:
+      scan-args: |-
+        --lockfile=pubspec.lock
+        --lockfile=example/pubspec.lock
+
+  secrets:
+    if: "!startsWith(github.head_ref, 'release-please--')"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

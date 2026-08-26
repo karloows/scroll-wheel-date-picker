@@ -73,13 +73,15 @@ class _FlatWheelScrollViewState extends State<FlatWheelScrollView> {
   FlatScrollController? _controller;
   int _lastReportedItemIndex = 0;
 
-  ScrollController get _effectiveController => widget.controller ?? (_controller ??= FlatScrollController());
+  ScrollController get _effectiveController =>
+      widget.controller ?? (_controller ??= FlatScrollController());
 
   @override
   void initState() {
     super.initState();
     if (widget.controller is FlatScrollController) {
-      final FlatScrollController controller = widget.controller! as FlatScrollController;
+      final FlatScrollController controller =
+          widget.controller! as FlatScrollController;
       _lastReportedItemIndex = controller.initialItem;
     }
   }
@@ -108,7 +110,8 @@ class _FlatWheelScrollViewState extends State<FlatWheelScrollView> {
       final int currentItemIndex = metrics.itemIndex;
       if (currentItemIndex != _lastReportedItemIndex) {
         _lastReportedItemIndex = currentItemIndex;
-        final int trueIndex = _getTrueIndex(_lastReportedItemIndex, widget.itemCount);
+        final int trueIndex =
+            _getTrueIndex(_lastReportedItemIndex, widget.itemCount);
         widget.onSelectedItemChanged?.call(trueIndex);
       }
     }
@@ -120,7 +123,8 @@ class _FlatWheelScrollViewState extends State<FlatWheelScrollView> {
     Widget forward = SliverFixedExtentList(
       key: _forwardListKey,
       delegate: SliverChildBuilderDelegate(
-        (context, index) => widget.itemBuilder(context, index.abs() % widget.itemCount),
+        (context, index) =>
+            widget.itemBuilder(context, index.abs() % widget.itemCount),
         childCount: widget.looping ? null : widget.itemCount,
       ),
       itemExtent: widget.itemExtent,
@@ -130,7 +134,8 @@ class _FlatWheelScrollViewState extends State<FlatWheelScrollView> {
 
     Widget reversed = SliverFixedExtentList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => widget.itemBuilder(context, widget.itemCount - (index.abs() % widget.itemCount) - 1),
+        (context, index) => widget.itemBuilder(
+            context, widget.itemCount - (index.abs() % widget.itemCount) - 1),
       ),
       itemExtent: widget.itemExtent,
     );
@@ -139,7 +144,8 @@ class _FlatWheelScrollViewState extends State<FlatWheelScrollView> {
   }
 
   double _getCenteredAnchor(BoxConstraints constraints) {
-    return ((constraints.maxHeight / 2) - (widget.itemExtent / 2)) / constraints.maxHeight;
+    return ((constraints.maxHeight / 2) - (widget.itemExtent / 2)) /
+        constraints.maxHeight;
   }
 
   @override
@@ -154,7 +160,8 @@ class _FlatWheelScrollViewState extends State<FlatWheelScrollView> {
             itemExtent: widget.itemExtent,
             itemCount: widget.itemCount,
             looping: widget.looping,
-            scrollBehavior: widget.scrollBehavior ?? ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            scrollBehavior: widget.scrollBehavior ??
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
             viewportBuilder: (context, position) {
               return Viewport(
                 center: _forwardListKey,
@@ -192,8 +199,10 @@ class FlatMetrics extends FixedScrollMetrics {
     int? itemIndex,
   }) {
     return FlatMetrics(
-      minScrollExtent: minScrollExtent ?? (hasContentDimensions ? this.minScrollExtent : null),
-      maxScrollExtent: maxScrollExtent ?? (hasContentDimensions ? this.maxScrollExtent : null),
+      minScrollExtent: minScrollExtent ??
+          (hasContentDimensions ? this.minScrollExtent : null),
+      maxScrollExtent: maxScrollExtent ??
+          (hasContentDimensions ? this.maxScrollExtent : null),
       pixels: pixels ?? this.pixels,
       viewportDimension: viewportDimension ?? this.viewportDimension,
       axisDirection: axisDirection ?? this.axisDirection,
@@ -231,7 +240,8 @@ class _FlatScrollableState extends ScrollableState {
   int get itemCount => (widget as _FlatScrollable).itemCount;
 }
 
-class _FlatScrollPosition extends ScrollPositionWithSingleContext implements FlatMetrics {
+class _FlatScrollPosition extends ScrollPositionWithSingleContext
+    implements FlatMetrics {
   _FlatScrollPosition({
     required super.physics,
     required super.context,
@@ -266,7 +276,9 @@ class _FlatScrollPosition extends ScrollPositionWithSingleContext implements Fla
       );
 
   @override
-  double get maxScrollExtent => looping ? (super.hasContentDimensions ? super.maxScrollExtent : 0.0) : itemExtent * (itemCount - 1);
+  double get maxScrollExtent => looping
+      ? (super.hasContentDimensions ? super.maxScrollExtent : 0.0)
+      : itemExtent * (itemCount - 1);
 
   @override
   FlatMetrics copyWith({
@@ -279,10 +291,13 @@ class _FlatScrollPosition extends ScrollPositionWithSingleContext implements Fla
     int? itemIndex,
   }) {
     return FlatMetrics(
-      minScrollExtent: minScrollExtent ?? (hasContentDimensions ? this.minScrollExtent : null),
-      maxScrollExtent: maxScrollExtent ?? (hasContentDimensions ? this.maxScrollExtent : null),
+      minScrollExtent: minScrollExtent ??
+          (hasContentDimensions ? this.minScrollExtent : null),
+      maxScrollExtent: maxScrollExtent ??
+          (hasContentDimensions ? this.maxScrollExtent : null),
       pixels: pixels ?? (hasPixels ? this.pixels : null),
-      viewportDimension: viewportDimension ?? (hasViewportDimension ? this.viewportDimension : null),
+      viewportDimension: viewportDimension ??
+          (hasViewportDimension ? this.viewportDimension : null),
       axisDirection: axisDirection ?? this.axisDirection,
       itemIndex: itemIndex ?? this.itemIndex,
       devicePixelRatio: devicePixelRatio ?? this.devicePixelRatio,
@@ -308,7 +323,8 @@ class FlatScrollController extends ScrollController {
     }
 
     await Future.wait<void>(<Future<void>>[
-      for (final _FlatScrollPosition position in positions.cast<_FlatScrollPosition>())
+      for (final _FlatScrollPosition position
+          in positions.cast<_FlatScrollPosition>())
         position.animateTo(
           itemIndex * position.itemExtent,
           duration: duration,
@@ -319,7 +335,8 @@ class FlatScrollController extends ScrollController {
 
   /// Jumpt to a specific item index
   void jumpToItem(int itemIndex) {
-    for (final _FlatScrollPosition position in positions.cast<_FlatScrollPosition>()) {
+    for (final _FlatScrollPosition position
+        in positions.cast<_FlatScrollPosition>()) {
       position.jumpTo(itemIndex * position.itemExtent);
     }
   }
@@ -348,7 +365,8 @@ class FlatScrollPhysics extends ScrollPhysics {
   }
 
   @override
-  Simulation? createBallisticSimulation(ScrollMetrics position, double velocity) {
+  Simulation? createBallisticSimulation(
+      ScrollMetrics position, double velocity) {
     assert(position is _FlatScrollPosition);
 
     final _FlatScrollPosition metrics = position as _FlatScrollPosition;
@@ -356,13 +374,15 @@ class FlatScrollPhysics extends ScrollPhysics {
     // Scenario 1:
     // If we're out of range and not headed back in range, defer to the parent
     // ballistics, which should put us back in range at the scrollable's boundary.
-    if ((velocity <= 0.0 && metrics.pixels <= metrics.minScrollExtent) || (velocity >= 0.0 && metrics.pixels >= metrics.maxScrollExtent)) {
+    if ((velocity <= 0.0 && metrics.pixels <= metrics.minScrollExtent) ||
+        (velocity >= 0.0 && metrics.pixels >= metrics.maxScrollExtent)) {
       return super.createBallisticSimulation(metrics, velocity);
     }
 
     // Create a test simulation to see where it would have ballistically fallen
     // naturally without settling onto items.
-    final Simulation? testFrictionSimulation = super.createBallisticSimulation(metrics, velocity);
+    final Simulation? testFrictionSimulation =
+        super.createBallisticSimulation(metrics, velocity);
 
     // Scenario 2:
     // If it was going to end up past the scroll extent, defer back to the
@@ -370,7 +390,8 @@ class FlatScrollPhysics extends ScrollPhysics {
     // boundary.
     if (testFrictionSimulation != null &&
         (testFrictionSimulation.x(double.infinity) == metrics.minScrollExtent ||
-            testFrictionSimulation.x(double.infinity) == metrics.maxScrollExtent)) {
+            testFrictionSimulation.x(double.infinity) ==
+                metrics.maxScrollExtent)) {
       return super.createBallisticSimulation(metrics, velocity);
     }
 
@@ -388,7 +409,9 @@ class FlatScrollPhysics extends ScrollPhysics {
     // Scenario 3:
     // If there's no velocity and we're already at where we intend to land,
     // do nothing.
-    if (velocity.abs() < toleranceFor(position).velocity && (settlingPixels - metrics.pixels).abs() < toleranceFor(position).distance) {
+    if (velocity.abs() < toleranceFor(position).velocity &&
+        (settlingPixels - metrics.pixels).abs() <
+            toleranceFor(position).distance) {
       return null;
     }
 
@@ -423,7 +446,10 @@ int _getItemFromOffset({
   required double minScrollExtent,
   required double maxScrollExtent,
 }) {
-  return (_clipOffsetToScrollableRange(offset, minScrollExtent, maxScrollExtent) / itemExtent).round();
+  return (_clipOffsetToScrollableRange(
+              offset, minScrollExtent, maxScrollExtent) /
+          itemExtent)
+      .round();
 }
 
 double _clipOffsetToScrollableRange(

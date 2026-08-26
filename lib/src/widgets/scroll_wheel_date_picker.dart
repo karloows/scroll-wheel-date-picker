@@ -94,11 +94,13 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
     }
 
     if (oldWidget.startDate != widget.startDate) {
-      _dateController.changeStartDate(widget.startDate ?? DateTime.parse(defaultStartDate));
+      _dateController.changeStartDate(
+          widget.startDate ?? DateTime.parse(defaultStartDate));
     }
 
     if (oldWidget.lastDate != widget.lastDate) {
-      _dateController.changeLastDate(widget.lastDate ?? DateTime.parse(defaultLastDate));
+      _dateController
+          .changeLastDate(widget.lastDate ?? DateTime.parse(defaultLastDate));
     }
 
     if (oldWidget.theme.monthFormat != widget.theme.monthFormat) {
@@ -184,7 +186,14 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
           child: ShaderMask(
             shaderCallback: (bounds) {
               return LinearGradient(
-                colors: widget.theme.fadeEdges ? [Colors.black, Colors.transparent, Colors.transparent, Colors.black] : [Colors.transparent],
+                colors: widget.theme.fadeEdges
+                    ? [
+                        Colors.black,
+                        Colors.transparent,
+                        Colors.transparent,
+                        Colors.black
+                      ]
+                    : [Colors.transparent],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 stops: widget.theme.fadeEdges ? [0.0, 0.08, 0.92, 1.0] : [0.0],
@@ -203,7 +212,8 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                         controller: _dateController.dayController,
                         controllerItemChanged: (value) {
                           _dateController.changeDay(day: value);
-                          widget.onSelectedItemChanged?.call(_dateController.dateTime);
+                          widget.onSelectedItemChanged
+                              ?.call(_dateController.dateTime);
                         },
                         looping: widget.loopDays,
                         startOffset: _dateController.startDay,
@@ -222,7 +232,8 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                         controller: _dateController.monthController,
                         controllerItemChanged: (value) {
                           _dateController.changeMonth(month: value);
-                          widget.onSelectedItemChanged?.call(_dateController.dateTime);
+                          widget.onSelectedItemChanged
+                              ?.call(_dateController.dateTime);
                         },
                         looping: widget.loopMonths,
                         startOffset: _dateController.startMonth,
@@ -238,7 +249,8 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                     controller: _dateController.yearController,
                     controllerItemChanged: (value) {
                       _dateController.changeYear(year: value);
-                      widget.onSelectedItemChanged?.call(_dateController.dateTime);
+                      widget.onSelectedItemChanged
+                          ?.call(_dateController.dateTime);
                     },
                     looping: widget.loopYears,
                   ),
@@ -256,8 +268,12 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: (widget.theme as FlatDatePickerTheme).backgroundColor.withOpacity(
-                                  1.0 - widget.theme.overAndUnderCenterOpacity.clamp(0.0, 1.0),
+                            color: (widget.theme as FlatDatePickerTheme)
+                                .backgroundColor
+                                .withValues(
+                                  alpha: 1.0 -
+                                      widget.theme.overAndUnderCenterOpacity
+                                          .clamp(0.0, 1.0),
                                 ),
                           ),
                         ),
@@ -266,8 +282,12 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: (widget.theme as FlatDatePickerTheme).backgroundColor.withOpacity(
-                                  1.0 - widget.theme.overAndUnderCenterOpacity.clamp(0.0, 1.0),
+                            color: (widget.theme as FlatDatePickerTheme)
+                                .backgroundColor
+                                .withValues(
+                                  alpha: 1.0 -
+                                      widget.theme.overAndUnderCenterOpacity
+                                          .clamp(0.0, 1.0),
                                 ),
                           ),
                         ),
