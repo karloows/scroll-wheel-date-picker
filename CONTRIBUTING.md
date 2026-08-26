@@ -46,9 +46,7 @@ For any public API change:
 1. Bump `version` in `pubspec.yaml` (`x.y.z+build` format).
 2. Add an entry at the top of `CHANGELOG.md` (see existing entries for format).
 3. Update `example/` if the API changed so it still builds.
-4. Mention the semver bump and CHANGELOG entry in the commit body.
-
-See [.agents/policies/publishing.md](.agents/policies/publishing.md) for details.
+4. Mention the semver bump and CHANGELOG entry in the commit body (see [AGENTS.md](AGENTS.md) for publishing details).
 
 ## Code style and patterns
 
@@ -57,7 +55,9 @@ See [.agents/policies/publishing.md](.agents/policies/publishing.md) for details
 
 ## Git and pull request conventions
 
-**Branch naming:** `<type>/<short-kebab-description>` — e.g., `feat/year-format`, `fix/loop-offset`.  
+See [AGENTS.md](AGENTS.md) for full details. Quick reference:
+
+**Branch naming:** `<type>/<short-kebab-description>` (e.g., `feat/year-format`, `fix/loop-offset`).  
 Allowed types: `feat`, `fix`, `refactor`, `perf`, `docs`, `test`, `chore`, `build`, `ci`.
 
 **Commits:** Conventional commits with a required body.  
@@ -69,8 +69,6 @@ Body = 1–2 lines on *why*, not a restatement of the diff. For public API chang
 - Title: same format as commits (`<type>(<scope>): <summary>`).
 - Description: what changed and why. Include a "Breaking change?" line if applicable.
 - Base: `development` (don't push to `main` unless explicitly asked).
-
-See [.agents/policies/branch-policy.md](.agents/policies/branch-policy.md), [.agents/policies/commit-policy.md](.agents/policies/commit-policy.md), and [.agents/policies/pr-policy.md](.agents/policies/pr-policy.md) for full details.
 
 ## Reporting bugs / requesting features
 
