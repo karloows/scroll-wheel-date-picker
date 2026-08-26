@@ -4,4 +4,4 @@ This project follows the [Contributor Covenant](https://www.contributor-covenant
 
 In short: be respectful, no harassment, no personal attacks. Disagree with ideas, not people.
 
-Report unacceptable behavior by opening a GitHub issue or contacting the maintainer directly.
+**Reporting:** For sensitive or confidential matters, contact the maintainer directly. For non-sensitive feedback, you can open a GitHub issue.
