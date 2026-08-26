@@ -91,6 +91,8 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
       initialDate: widget.initialDate,
       startDate: widget.startDate,
       lastDate: widget.lastDate,
+      monthFormat: widget.theme.monthFormat,
+      locale: widget.theme.locale,
     );
   }
 
@@ -112,8 +114,12 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
           .changeLastDate(widget.lastDate ?? DateTime.parse(defaultLastDate));
     }
 
-    if (oldWidget.theme.monthFormat != widget.theme.monthFormat) {
-      _dateController.changeMonthFormat(format: widget.theme.monthFormat);
+    if (oldWidget.theme.monthFormat != widget.theme.monthFormat ||
+        oldWidget.theme.locale != widget.theme.locale) {
+      _dateController.changeMonthFormat(
+        format: widget.theme.monthFormat,
+        locale: widget.theme.locale,
+      );
     }
   }
 

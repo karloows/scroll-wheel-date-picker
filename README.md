@@ -23,6 +23,19 @@ You can choose what type of overlay you want to have on the current selected ite
 
 It allows you to select what type of month format you want to display. The available formats are `full` which simply means the complete name of the month, `threeLetters` and `twoLetters` basically formats the months based on their common abbreviations with the letter count.
 
+#### Locale
+
+Pass a `locale` to the theme to translate month names via [`intl`](https://pub.dev/packages/intl) instead of the default English names:
+
+```dart
+CurveDatePickerTheme(
+  monthFormat: MonthFormat.full,
+  locale: const Locale('es'), // enero, febrero, marzo...
+)
+```
+
+`locale` defaults to `null` (English). For any other locale, your app must call `initializeDateFormatting()` (from `package:intl/date_symbol_data_local.dart`) for that locale before building the picker, otherwise `intl` throws. Note that `MonthFormat.twoLetters` combined with a `locale` takes the first two characters of the localized abbreviation and may collide between different months in some languages — use `threeLetters` for guaranteed uniqueness.
+
 #### Faded Vertical Edges
 
 It adds fade on top and bottom to create a smooth disapearance effect when the items are beyond the viewport. Defaults to `true`.
