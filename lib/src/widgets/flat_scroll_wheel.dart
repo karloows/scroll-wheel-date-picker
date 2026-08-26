@@ -83,28 +83,34 @@ class _FlatScrollWheelState extends State<FlatScrollWheel> {
 
     // Check if the start offset is specified, if yes then generate a list of start offsets to disable.
     if (widget.startOffset != null) {
-      _startOffsets.addAll(List.generate(widget.startOffset!, (index) => index));
+      _startOffsets
+          .addAll(List.generate(widget.startOffset!, (index) => index));
     }
 
     // Check if the last offset is specified, if yes then generate a list of last offsets to disable.
     if (widget.lastOffset != null) {
-      _lastOffsets.addAll(List.generate(widget.items.length - widget.lastOffset!, (index) => widget.lastOffset! + index));
+      _lastOffsets.addAll(List.generate(
+          widget.items.length - widget.lastOffset!,
+          (index) => widget.lastOffset! + index));
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // If `listenAfterAnimation` is enabled, listen when select item is changed.
       if (widget.listenAfterAnimation) {
-        _controller.position.isScrollingNotifier.addListener(_handleOnSelectedItemChanged);
+        _controller.position.isScrollingNotifier
+            .addListener(_handleOnSelectedItemChanged);
       }
 
       // If `startOffset` is specified, listen on item changed and animate towards the nearest item that is not part of the offset items.
       if (widget.startOffset != null) {
-        _controller.position.isScrollingNotifier.addListener(() => _handleOffset(_startOffsets));
+        _controller.position.isScrollingNotifier
+            .addListener(() => _handleOffset(_startOffsets));
       }
 
       // If `lastOffset` is specified, listen on item changed and animate towards the nearest item that is not part of the offset items.
       if (widget.lastOffset != null) {
-        _controller.position.isScrollingNotifier.addListener(() => _handleOffset(_lastOffsets));
+        _controller.position.isScrollingNotifier
+            .addListener(() => _handleOffset(_lastOffsets));
       }
     });
   }
@@ -114,44 +120,61 @@ class _FlatScrollWheelState extends State<FlatScrollWheel> {
     super.didUpdateWidget(oldWidget);
 
     // Jump to an item if the `selectedIndex` is changed or the `items lenght` is changed.
-    if (oldWidget.items.length != widget.items.length || oldWidget.selectedIndex != widget.selectedIndex) {
+    if (oldWidget.items.length != widget.items.length ||
+        oldWidget.selectedIndex != widget.selectedIndex) {
       _controller.jumpToItem(widget.selectedIndex);
     }
 
     // Resets the listener of the `_handleOnSelectedItemChanged`.
-    if (oldWidget.listenAfterAnimation != widget.listenAfterAnimation && widget.listenAfterAnimation) {
-      _controller.position.isScrollingNotifier.removeListener(_handleOnSelectedItemChanged);
-      _controller.position.isScrollingNotifier.addListener(_handleOnSelectedItemChanged);
+    if (oldWidget.listenAfterAnimation != widget.listenAfterAnimation &&
+        widget.listenAfterAnimation) {
+      _controller.position.isScrollingNotifier
+          .removeListener(_handleOnSelectedItemChanged);
+      _controller.position.isScrollingNotifier
+          .addListener(_handleOnSelectedItemChanged);
     }
 
     // Resets the listener of the start offset's `_handleOffset`.
-    if (oldWidget.startOffset != widget.startOffset && widget.startOffset != null) {
+    if (oldWidget.startOffset != widget.startOffset &&
+        widget.startOffset != null) {
       // Reset the `_startOffset` list with the new `startOffset` value.
       _startOffsets.clear();
-      _startOffsets.addAll(List.generate(widget.startOffset!, (index) => index));
+      _startOffsets
+          .addAll(List.generate(widget.startOffset!, (index) => index));
 
       // Remove the previous `_handleOffset` listener and listen again for the new `startOffset` value.
-      _controller.position.isScrollingNotifier.removeListener(() => _handleOffset(_startOffsets));
-      _controller.position.isScrollingNotifier.addListener(() => _handleOffset(_startOffsets));
-    } else if (oldWidget.startOffset != widget.startOffset && widget.startOffset == null) {
+      _controller.position.isScrollingNotifier
+          .removeListener(() => _handleOffset(_startOffsets));
+      _controller.position.isScrollingNotifier
+          .addListener(() => _handleOffset(_startOffsets));
+    } else if (oldWidget.startOffset != widget.startOffset &&
+        widget.startOffset == null) {
       // If the startOffset is null, then clear the `_startOffset` list and remove the previous listener.
       _startOffsets.clear();
-      _controller.position.isScrollingNotifier.removeListener(() => _handleOffset(_startOffsets));
+      _controller.position.isScrollingNotifier
+          .removeListener(() => _handleOffset(_startOffsets));
     }
 
     // Resets the listener of the last offset's `_handleOffset`.
-    if (oldWidget.lastOffset != widget.lastOffset && widget.lastOffset != null) {
+    if (oldWidget.lastOffset != widget.lastOffset &&
+        widget.lastOffset != null) {
       // Reset the `_lastOffset` list with the new `lastOffset` value.
       _lastOffsets.clear();
-      _lastOffsets.addAll(List.generate(widget.items.length - widget.lastOffset!, (index) => widget.lastOffset! + index));
+      _lastOffsets.addAll(List.generate(
+          widget.items.length - widget.lastOffset!,
+          (index) => widget.lastOffset! + index));
 
       // Remove the previous `_handleOffset` listener and listen again for the new `lastOffset` value.
-      _controller.position.isScrollingNotifier.removeListener(() => _handleOffset(_lastOffsets));
-      _controller.position.isScrollingNotifier.addListener(() => _handleOffset(_lastOffsets));
-    } else if (oldWidget.lastOffset != widget.lastOffset && widget.lastOffset == null) {
+      _controller.position.isScrollingNotifier
+          .removeListener(() => _handleOffset(_lastOffsets));
+      _controller.position.isScrollingNotifier
+          .addListener(() => _handleOffset(_lastOffsets));
+    } else if (oldWidget.lastOffset != widget.lastOffset &&
+        widget.lastOffset == null) {
       // If the lastOffset is null, then clear the `_lastOffset` list and remove the previous listener.
       _lastOffsets.clear();
-      _controller.position.isScrollingNotifier.removeListener(() => _handleOffset(_lastOffsets));
+      _controller.position.isScrollingNotifier
+          .removeListener(() => _handleOffset(_lastOffsets));
     }
   }
 
@@ -166,7 +189,8 @@ class _FlatScrollWheelState extends State<FlatScrollWheel> {
   void _handleOnSelectedItemChanged() {
     // If its not scrolling, then we call `onSelectedItemChanged` to update the value.
     if (!_controller.position.isScrollingNotifier.value) {
-      widget.onSelectedItemChanged?.call(_controller.selectedItem % widget.items.length);
+      widget.onSelectedItemChanged
+          ?.call(_controller.selectedItem % widget.items.length);
     }
   }
 
@@ -176,7 +200,9 @@ class _FlatScrollWheelState extends State<FlatScrollWheel> {
     if (_controller.position.isScrollingNotifier.value) return;
 
     // Check whether the current selected item is in the `startOffsets` or `lastOffsets`. Return the value if its true and -1 if not.
-    final value = offsets.firstWhere((i) => _controller.selectedItem % widget.items.length == i, orElse: () => -1);
+    final value = offsets.firstWhere(
+        (i) => _controller.selectedItem % widget.items.length == i,
+        orElse: () => -1);
 
     // Wait for 800 milliseconds before continuing.
     await Future.delayed(const Duration(milliseconds: 800));
@@ -191,7 +217,8 @@ class _FlatScrollWheelState extends State<FlatScrollWheel> {
       // If so, return the difference between the offset list size minus the index.
       // Otherwise, return the index + 1 in negative value.
       // To put it simply, we are doing this to animate towards the nearest item that is outside of the offset list.
-      final addOffset = index >= halfSize ? offsets.length - index : -(index + 1);
+      final addOffset =
+          index >= halfSize ? offsets.length - index : -(index + 1);
 
       // Using the `addOffset`, animate towards the nearest item by the adding the current selected item index with the `addOffset` value.
       _controller.animateToItem(
@@ -206,7 +233,8 @@ class _FlatScrollWheelState extends State<FlatScrollWheel> {
   TextStyle? _handleTextStyle(int itemIndex) {
     // If `_startOffsets` or `_lastOffsets` contains the current `itemIndex`, then mute the item. Otherwise, use the default text style.
     if (_startOffsets.contains(itemIndex) || _lastOffsets.contains(itemIndex)) {
-      return widget.textStyle?.copyWith(color: widget.textStyle?.color?.withOpacity(0.2));
+      return widget.textStyle
+          ?.copyWith(color: widget.textStyle?.color?.withOpacity(0.2));
     } else {
       return widget.textStyle;
     }
@@ -221,7 +249,8 @@ class _FlatScrollWheelState extends State<FlatScrollWheel> {
       itemCount: widget.items.length,
       looping: widget.looping,
       scrollBehavior: widget.scrollBehavior,
-      onSelectedItemChanged: widget.listenAfterAnimation ? null : widget.onSelectedItemChanged,
+      onSelectedItemChanged:
+          widget.listenAfterAnimation ? null : widget.onSelectedItemChanged,
       itemBuilder: (context, itemIndex) {
         return ScrollItem(
           label: widget.items[itemIndex],

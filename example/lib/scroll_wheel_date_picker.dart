@@ -44,7 +44,8 @@ class ScrollWheelDatePicker extends StatelessWidget {
                 ),
                 const SizedBox(height: 12.0),
                 TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blueAccent),
+                  style:
+                      TextButton.styleFrom(backgroundColor: Colors.blueAccent),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -66,7 +67,8 @@ class ScrollWheelDatePicker extends StatelessWidget {
                 ),
                 const SizedBox(height: 12.0),
                 TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blueAccent),
+                  style:
+                      TextButton.styleFrom(backgroundColor: Colors.blueAccent),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -88,7 +90,8 @@ class ScrollWheelDatePicker extends StatelessWidget {
                 ),
                 const SizedBox(height: 12.0),
                 TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blueAccent),
+                  style:
+                      TextButton.styleFrom(backgroundColor: Colors.blueAccent),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -119,7 +122,8 @@ class ScrollWheelDatePicker extends StatelessWidget {
                 ),
                 const SizedBox(height: 12.0),
                 TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blueAccent),
+                  style:
+                      TextButton.styleFrom(backgroundColor: Colors.blueAccent),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -141,7 +145,8 @@ class ScrollWheelDatePicker extends StatelessWidget {
                 ),
                 const SizedBox(height: 8.0),
                 TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blueAccent),
+                  style:
+                      TextButton.styleFrom(backgroundColor: Colors.blueAccent),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -163,7 +168,8 @@ class ScrollWheelDatePicker extends StatelessWidget {
                 ),
                 const SizedBox(height: 8.0),
                 TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.blueAccent),
+                  style:
+                      TextButton.styleFrom(backgroundColor: Colors.blueAccent),
                   onPressed: () {
                     Navigator.push(
                       context,
