@@ -1,4 +1,6 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:scroll_wheel_date_picker/scroll_wheel_date_picker.dart';
 
 void main() {
@@ -169,5 +171,41 @@ void main() {
     controller.changeYear(year: otherYearIndex);
     expect(controller.startMonth, null);
     expect(controller.startDay, null);
+  });
+
+  group('locale', () {
+    setUpAll(() async {
+      await initializeDateFormatting('es');
+    });
+
+    test('locale: null keeps the default English month names', () {
+      final controller = DateController(initialDate: DateTime(2024, 1, 1));
+
+      expect(controller.monthController.items.first, 'January');
+    });
+
+    test('locale is applied on construction, not just after an update', () {
+      // Regression test: `monthFormat`/`locale` used to only take effect via
+      // a later `changeMonthFormat` call — the initial `_MonthController`
+      // always built with English defaults regardless of what the caller
+      // passed in, so a locale set once (the common case) never applied.
+      final controller = DateController(
+        initialDate: DateTime(2024, 1, 1),
+        locale: const Locale('es'),
+      );
+
+      expect(controller.monthController.items.first, 'enero');
+    });
+
+    test('twoLetters with a locale returns 2-character strings', () {
+      final controller = DateController(
+        initialDate: DateTime(2024, 1, 1),
+        monthFormat: MonthFormat.twoLetters,
+        locale: const Locale('es'),
+      );
+
+      expect(
+          controller.monthController.items.every((m) => m.length == 2), true);
+    });
   });
 }

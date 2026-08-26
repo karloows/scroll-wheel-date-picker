@@ -20,6 +20,8 @@ abstract class ScrollWheelDatePickerTheme {
   ///
   /// [monthFormat] Format of the month in the [ScrollWheelDatePicker]. Defaults to [MonthFormat.full].
   ///
+  /// [locale] Locale used to translate month names. Defaults to `null` (English).
+  ///
   /// [itemTextStyle] Text style of the items in the [ScrollWheelDatePicker]. Defaults to [defaultItemTextStyle].
   ///
   /// [overlay] Apply selected item's center overlay. Defaults to [ScrollWheelDatePickerOverlay.holo].
@@ -32,6 +34,7 @@ abstract class ScrollWheelDatePickerTheme {
     this.itemExtent = defaultItemExtent,
     this.overAndUnderCenterOpacity = defaultOpacity,
     this.monthFormat = MonthFormat.full,
+    this.locale,
     this.itemTextStyle,
     this.overlay = ScrollWheelDatePickerOverlay.holo,
     this.overlayColor,
@@ -55,6 +58,16 @@ abstract class ScrollWheelDatePickerTheme {
   ///
   /// [MonthFormat.twoLetters] - Shows the two letters abbreviations of the month.
   final MonthFormat monthFormat;
+
+  /// Locale used to translate month names when [monthFormat] renders text. Defaults to `null` (English).
+  ///
+  /// Requires the app to have called `initializeDateFormatting()` (from `package:intl/date_symbol_data_local.dart`)
+  /// for this locale before building the picker, otherwise `intl` throws a `LocaleDataException`.
+  ///
+  /// [MonthFormat.twoLetters] combined with a [locale] takes the first two characters of the localized
+  /// abbreviation and may collide between different months in some languages — use [MonthFormat.threeLetters]
+  /// for guaranteed uniqueness.
+  final Locale? locale;
 
   /// Text style of the items in the [ScrollWheelDatePicker]. Defaults to [defaultItemTextStyle].
   final TextStyle? itemTextStyle;

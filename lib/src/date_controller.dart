@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'widgets/scroll_wheel_date_picker.dart';
 import 'widgets/curve_scroll_wheel.dart';
@@ -12,6 +13,8 @@ class DateController with ChangeNotifier {
     DateTime? initialDate,
     DateTime? startDate,
     DateTime? lastDate,
+    MonthFormat? monthFormat,
+    Locale? locale,
   }) {
     if (startDate != null && lastDate != null) {
       assert(
@@ -74,6 +77,8 @@ class DateController with ChangeNotifier {
 
     _monthController = _MonthController(
       selectedIndex: initialDate != null ? initialDate.month - 1 : null,
+      monthFormat: monthFormat,
+      locale: locale,
     );
 
     _yearController = _YearController(
@@ -173,9 +178,19 @@ class DateController with ChangeNotifier {
     _dateTime = _dateTime.copyWith(month: month + 1);
   }
 
-  /// Called when a [MonthFormat] is given or changed in the [ScrollWheelDatePicker] constructor.
-  void changeMonthFormat({required MonthFormat format}) {
-    _monthController = _monthController.copyWith(monthFormat: format);
+  /// Called when a [MonthFormat] or [Locale] is given or changed in the [ScrollWheelDatePicker] constructor.
+  ///
+  /// Constructs a fresh [_MonthController] rather than using [_MonthController.copyWith] since [locale] is
+  /// nullable and must be settable back to `null` — `copyWith`'s `??` fallback can't distinguish "reset to
+  /// null" from "not provided", which is the semantics its other callers ([changeMonth], [changeInitialDate])
+  /// rely on to preserve the current locale.
+  void changeMonthFormat(
+      {required MonthFormat format, required Locale? locale}) {
+    _monthController = _MonthController(
+      monthFormat: format,
+      locale: locale,
+      selectedIndex: _monthController.selectedIndex,
+    );
   }
 
   /// Called when the selected item of the years [CurveScrollWheel] or [FlatScrollWheel] changed.
@@ -368,9 +383,11 @@ class _MonthController implements IDateController {
   /// This is a factor as well to create a [copyWith] & preventing other classes from creating a new list of [_months] outside of this class.
   const _MonthController._({
     required MonthFormat monthFormat,
+    required Locale? locale,
     required int selectedIndex,
     required List<String> months,
   })  : _monthFormat = monthFormat,
+        _locale = locale,
         _selectedIndex = selectedIndex,
         _months = months;
 
@@ -380,23 +397,29 @@ class _MonthController implements IDateController {
   /// Applies the format of the months. Can be updated with [copyWith].
   final MonthFormat _monthFormat;
 
+  /// Locale used to translate month names. `null` keeps the default English names. Can be updated with [copyWith].
+  final Locale? _locale;
+
   /// Collection of months in [String] type.
   final List<String> _months;
 
   factory _MonthController({
     MonthFormat? monthFormat,
+    Locale? locale,
     int? selectedIndex,
   }) {
     final MonthFormat format = monthFormat ?? MonthFormat.full;
 
     return _MonthController._(
       monthFormat: format,
+      locale: locale,
       selectedIndex: selectedIndex ?? DateTime.now().month - 1,
-      months: _generateMonths(monthFormat: format),
+      months: _generateMonths(monthFormat: format, locale: locale),
     );
   }
 
   MonthFormat get monthFormat => _monthFormat;
+  Locale? get locale => _locale;
   @override
   int get selectedIndex => _selectedIndex;
   @override
@@ -405,10 +428,12 @@ class _MonthController implements IDateController {
   @override
   _MonthController copyWith({
     MonthFormat? monthFormat,
+    Locale? locale,
     int? selectedIndex,
   }) =>
       _MonthController(
         monthFormat: monthFormat ?? _monthFormat,
+        locale: locale ?? _locale,
         selectedIndex: selectedIndex ?? _selectedIndex,
       );
 }
@@ -541,10 +566,36 @@ List<String> _generateDays({required int numberOfDays}) {
 ///
 /// [MonthFormat.twoLetters] - Returns the two letter abbreviation name of the months.
 ///
+/// If [locale] is given, month names are translated via `intl`'s [DateFormat] instead of the hardcoded
+/// English [Month] enum. Its casing is used as-is (not run through [_capitalize]) since `intl` already
+/// encodes each locale's own capitalization convention. [MonthFormat.twoLetters] with a [locale] takes the
+/// first two characters of the localized three-letter abbreviation, which may collide between months in
+/// some languages.
+///
 /// If [startMonth] is specified, it will generate the list of months starting from the given [startMonth].
 ///
 /// If [lastMonth] is specified, it will generate the list of months ending with the given [lastMonth].
-List<String> _generateMonths({required MonthFormat monthFormat}) {
+List<String> _generateMonths(
+    {required MonthFormat monthFormat, Locale? locale}) {
+  if (locale != null) {
+    final String localeName = locale.toString();
+
+    switch (monthFormat) {
+      case MonthFormat.threeLetters:
+        return List.generate(Month.values.length,
+            (i) => DateFormat.MMM(localeName).format(DateTime(2000, i + 1)));
+      case MonthFormat.twoLetters:
+        return List.generate(
+            Month.values.length,
+            (i) => DateFormat.MMM(localeName)
+                .format(DateTime(2000, i + 1))
+                .substring(0, 2));
+      default:
+        return List.generate(Month.values.length,
+            (i) => DateFormat.MMMM(localeName).format(DateTime(2000, i + 1)));
+    }
+  }
+
   switch (monthFormat) {
     case MonthFormat.threeLetters:
       return List.generate(

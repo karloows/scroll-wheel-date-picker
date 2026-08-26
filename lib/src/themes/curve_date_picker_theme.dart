@@ -11,6 +11,8 @@ class CurveDatePickerTheme extends ScrollWheelDatePickerTheme {
   ///
   /// [monthFormat] Format of the month in the [ScrollWheelDatePicker]. Defaults to [MonthFormat.full].
   ///
+  /// [locale] Locale used to translate month names. Defaults to `null` (English).
+  ///
   /// [itemTextStyle] Text style of the items in the [ScrollWheelDatePicker]. Defaults to [defaultItemTextStyle].
   ///
   /// [overlay] Apply selected item's center overlay. Defaults to [ScrollWheelDatePickerOverlay.holo].
@@ -26,6 +28,7 @@ class CurveDatePickerTheme extends ScrollWheelDatePickerTheme {
     super.itemExtent,
     super.overAndUnderCenterOpacity,
     super.monthFormat,
+    super.locale,
     super.itemTextStyle,
     super.overlay,
     super.overlayColor,
