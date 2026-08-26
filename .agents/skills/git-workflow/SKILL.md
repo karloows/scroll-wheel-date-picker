@@ -1,12 +1,12 @@
 ---
-name: ship-workflow
-description: Use when branch, commit, push, or pull request workflow is part of the task. Follow this public package repo's branch, commit, PR, and publishing constraints without pushing directly to main.
+name: git-workflow
+description: Use when branch, commit, push, PR, merge, or branch-cleanup workflow is part of the task. Follow this public package repo's branch, commit, PR, merge, and publishing constraints without pushing directly to main.
 ---
 
-# Ship Workflow
+# Git Workflow
 
 Use this skill when the task includes creating a branch, committing, pushing,
-or opening a PR.
+opening a PR, merging a PR, or cleaning up a branch after merge.
 
 ## Branches
 
@@ -31,6 +31,20 @@ or opening a PR.
   fits.
 - Keep the PR description short and public-safe.
 - Call out breaking changes explicitly.
+
+## Trigger words
+
+When the user says **"ship"**, run without asking for confirmation:
+1. `git checkout -b <type>/<short-kebab-description>` off the current base branch.
+2. Commit staged/relevant changes per the Commits section above.
+3. Push the branch.
+4. Open a PR via the `github-personal` MCP server (not `gh`) per the Pull Requests section above.
+
+When the user says **"land"**, run without asking for confirmation:
+1. Squash-and-merge the open PR via the `github-personal` MCP server.
+2. Check out the base branch the PR merged into.
+3. `git pull` to bring the merge down locally.
+4. Delete the feature branch, both local and remote.
 
 ## Read These
 
