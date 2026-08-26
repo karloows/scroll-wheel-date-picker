@@ -1,12 +1,12 @@
 ---
-name: ship-workflow
-description: Use when branch, commit, push, or pull request workflow is part of the task. Follow this public package repo's branch, commit, PR, and publishing constraints without pushing directly to main.
+name: git-workflow
+description: Use when branch, commit, push, PR, merge, or branch-cleanup workflow is part of the task. Follow this public package repo's branch, commit, PR, merge, and publishing constraints without pushing directly to main.
 ---
 
-# Ship Workflow
+# Git Workflow
 
 Use this skill when the task includes creating a branch, committing, pushing,
-or opening a PR.
+opening a PR, merging a PR, or cleaning up a branch after merge.
 
 ## Branches
 
