@@ -20,6 +20,31 @@ void main() {
     expect(find.byType(ScrollWheelDatePicker), findsOneWidget);
   });
 
+  testWidgets('columnOrder controls the left-to-right wheel order', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ScrollWheelDatePicker(
+            initialDate: DateTime(2024, 1, 1),
+            theme: CurveDatePickerTheme(),
+            columnOrder: const [
+              DatePickerColumn.month,
+              DatePickerColumn.day,
+              DatePickerColumn.year,
+            ],
+          ),
+        ),
+      ),
+    );
+
+    final row = tester.widget<Row>(
+      find.descendant(of: find.byType(ShaderMask), matching: find.byType(Row)),
+    );
+    expect(row.children.length, 3);
+  });
+
   test('changeYear resolves the leap-year day count by calendar year', () {
     final controller = DateController(initialDate: DateTime(1999, 2, 1));
 
