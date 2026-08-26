@@ -8,7 +8,7 @@ Process/policy conventions (git, publishing, PRs, dependencies) live in [AGENTS.
 
 ## Commands
 
-```
+```sh
 flutter pub get              # install deps (run in repo root and example/)
 flutter analyze              # lint, must pass
 flutter test                 # run all widget tests

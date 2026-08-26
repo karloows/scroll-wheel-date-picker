@@ -10,7 +10,7 @@ Policies (read all, they're short): [.agents/policies/publishing.md](.agents/pol
 
 - This repo is public. Never commit secrets, tokens, or personal data. Assume every commit and PR is visible to anyone.
 - The package is already published (current version in `pubspec.yaml`). It's a dependency other people's `pubspec.lock` already resolved against:
-  - Any public API change (signature, default value, removed export) is a breaking change — bump `version` in `pubspec.yaml` per semver and add an entry to `CHANGELOG.md` in the same change.
+  - Incompatible public API changes (for example removed exports, required signature changes, or changed defaults that break callers) require a major semver bump, while compatible additive API changes such as optional parameters or new exported helpers normally require a minor bump. Add an entry to `CHANGELOG.md` for every public API change in the same change.
   - Don't rename or remove public symbols in `lib/scroll_wheel_date_picker.dart` or `lib/src/**` casually; check `README.md` for documented usage first.
   - `example/` is `publish_to: none` and depends on the package via `path: ../` — keep it in sync with any API change so it still builds.
 
