@@ -246,7 +246,7 @@ class _CurveScrollWheelState extends State<CurveScrollWheel> {
     // If `_startOffsets` or `_lastOffsets` contains the current `itemIndex`, then mute the item. Otherwise, use the default text style.
     if (_startOffsets.contains(itemIndex) || _lastOffsets.contains(itemIndex)) {
       return widget.textStyle
-          ?.copyWith(color: widget.textStyle?.color?.withOpacity(0.2));
+          ?.copyWith(color: widget.textStyle?.color?.withValues(alpha: 0.2));
     } else {
       return widget.textStyle;
     }

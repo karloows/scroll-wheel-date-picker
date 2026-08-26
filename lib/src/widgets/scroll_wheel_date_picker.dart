@@ -270,8 +270,8 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                           decoration: BoxDecoration(
                             color: (widget.theme as FlatDatePickerTheme)
                                 .backgroundColor
-                                .withOpacity(
-                                  1.0 -
+                                .withValues(
+                                  alpha: 1.0 -
                                       widget.theme.overAndUnderCenterOpacity
                                           .clamp(0.0, 1.0),
                                 ),
@@ -284,8 +284,8 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                           decoration: BoxDecoration(
                             color: (widget.theme as FlatDatePickerTheme)
                                 .backgroundColor
-                                .withOpacity(
-                                  1.0 -
+                                .withValues(
+                                  alpha: 1.0 -
                                       widget.theme.overAndUnderCenterOpacity
                                           .clamp(0.0, 1.0),
                                 ),

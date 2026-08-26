@@ -22,7 +22,7 @@ class HightlightOverlay extends StatelessWidget {
     return Container(
       height: height,
       decoration: BoxDecoration(
-        color: color ?? Colors.grey.withOpacity(defaultOpacity),
+        color: color ?? Colors.grey.withValues(alpha: defaultOpacity),
         borderRadius:
             BorderRadius.circular(CupertinoContextMenu.kOpenBorderRadius),
       ),
