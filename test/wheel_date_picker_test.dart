@@ -32,4 +32,13 @@ void main() {
 
     expect(controller.dayController.items.length, 29);
   });
+
+  test('constructing with an initialDate in December does not throw', () {
+    // Regression test for https://github.com/karloows/scroll-wheel-date-picker/issues/9 —
+    // month was passed 1-indexed into the 0-indexed days-per-month lookup,
+    // so December (12) read past the end of the list.
+    final controller = DateController(initialDate: DateTime(2024, 12, 24));
+
+    expect(controller.dayController.items.length, 31);
+  });
 }

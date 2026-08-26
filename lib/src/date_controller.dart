@@ -68,7 +68,7 @@ class DateController with ChangeNotifier {
       selectedIndex: initialDate != null ? initialDate.day - 1 : null,
       numberOfDays: _getNumberOfDays(
         year: initialDate?.year ?? DateTime.now().year,
-        month: initialDate?.month ?? DateTime.now().month,
+        month: (initialDate?.month ?? DateTime.now().month) - 1,
       ),
     );
 
@@ -247,7 +247,13 @@ class DateController with ChangeNotifier {
     _dayController = _dayController.copyWith(
         selectedIndex: selectedIndex, numberOfDays: numberOfDays);
 
-    notifyListeners();
+    // Deferred to a post-frame callback: `changeMonth`/`changeYear` (and this
+    // method) run from a wheel's `onSelectedItemChanged`, which fires while
+    // the sibling wheels' `ListenableBuilder`s are still building — calling
+    // `notifyListeners()` synchronously here would rebuild them mid-build.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 
   /// Called when the [initialDate] of the [ScrollWheelDatePicker] changed.
