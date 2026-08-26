@@ -31,7 +31,7 @@ jobs:
       - run: flutter analyze
       - run: flutter test
 
-  security:
+  dependency-review:
     if: "!startsWith(github.head_ref, 'release-please--')"
     runs-on: ubuntu-latest
     permissions:
@@ -40,10 +40,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/dependency-review-action@v4
-      - uses: google/osv-scanner-action/osv-scanner-action@v2
-        with:
-          scan-args: |-
-            --lockfile=pubspec.lock
+
+  osv-scan:
+    if: "!startsWith(github.head_ref, 'release-please--')"
+    permissions:
+      contents: read
+      security-events: write
+      pull-requests: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@v2.5.1
+    with:
+      scan-args: |-
+        --lockfile=pubspec.lock
 
   secrets:
     if: "!startsWith(github.head_ref, 'release-please--')"
