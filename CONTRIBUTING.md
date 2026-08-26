@@ -68,7 +68,7 @@ Body = 1–2 lines on *why*, not a restatement of the diff. For public API chang
 **PRs:**  
 - Title: same format as commits (`<type>(<scope>): <summary>`).
 - Description: what changed and why. Include a "Breaking change?" line if applicable.
-- Base: `development` (don't push to `main` unless explicitly asked).
+- Base: `main`.
 
 ## Reporting bugs / requesting features
 
