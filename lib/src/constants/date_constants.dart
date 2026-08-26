@@ -30,6 +30,9 @@ enum MonthFormat {
   twoLetters,
 }
 
+/// Enum for the column order of the day, month, and year scroll wheels.
+enum DatePickerColumn { day, month, year }
+
 /// Default value of [DateController]'s start date.
 const String defaultStartDate = "1900-01-01 00:00:00";
 
