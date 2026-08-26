@@ -84,6 +84,22 @@ ScrollWheelDatePicker(
 ),
 ```
 
+## Development
+
+This project uses [FVM](https://fvm.app/) to ensure all contributors use the same Flutter version. Install FVM, then run:
+
+```bash
+fvm install
+fvm flutter pub get
+```
+
+Run tests and lints before committing:
+
+```bash
+fvm flutter analyze
+fvm flutter test
+```
+
 ## Contributors
 
 <a href="https://github.com/Fingertips18/scroll-wheel-date-picker/graphs/contributors">
