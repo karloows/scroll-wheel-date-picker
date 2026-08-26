@@ -5,7 +5,7 @@ Or maybe, you also resorted using [ListWheelScrollView](https://api.flutter.dev/
 
 #### Good news!
 
-This package supports a wheel-type date-picker that has two scroll types: [CurveScrollWheel](https://github.com/Fingertips18/scroll-wheel-date-picker/blob/main/lib/src/widgets/curve_scroll_wheel.dart) and [FlatScrollWheel](https://github.com/Fingertips18/scroll-wheel-date-picker/blob/main/lib/src/widgets/flat_scroll_wheel.dart).
+This package supports a wheel-type date-picker that has two scroll types: [CurveScrollWheel](https://github.com/karloows/scroll-wheel-date-picker/blob/main/lib/src/widgets/curve_scroll_wheel.dart) and [FlatScrollWheel](https://github.com/karloows/scroll-wheel-date-picker/blob/main/lib/src/widgets/flat_scroll_wheel.dart).
 
 ## Features
 
@@ -115,10 +115,10 @@ fvm flutter test
 
 ## Contributors
 
-<a href="https://github.com/Fingertips18/scroll-wheel-date-picker/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Fingertips18/scroll-wheel-date-picker" />
+<a href="https://github.com/karloows/scroll-wheel-date-picker/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=karloows/scroll-wheel-date-picker" />
 </a>
 
 ---
 
-_Ghian Tan_ @ _Fingertips_ ([Github](https://github.com/Fingertips18))
+_Ghian Tan_ @ _Fingertips_ ([Github](https://github.com/karloows))
