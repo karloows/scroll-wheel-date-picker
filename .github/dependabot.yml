@@ -8,8 +8,6 @@ updates:
       prefix: "chore"
       include: "scope"
     open-pull-requests-limit: 10
-    reviewers:
-      - Fingertips18
 
   - package-ecosystem: "pub"
     directory: /example
@@ -19,5 +17,3 @@ updates:
       prefix: "chore"
       include: "scope"
     open-pull-requests-limit: 10
-    reviewers:
-      - Fingertips18
