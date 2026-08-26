@@ -116,13 +116,12 @@ class _CurveScrollWheelState extends State<CurveScrollWheel> {
       // If `startOffset` is specified, listen on item changed and animate towards the nearest item that is not part of the offset items.
       if (widget.startOffset != null) {
         _controller.position.isScrollingNotifier
-            .addListener(() => _handleOffset(_startOffsets));
+            .addListener(_handleStartOffset);
       }
 
       // If `lastOffset` is specified, listen on item changed and animate towards the nearest item that is not part of the offset items.
       if (widget.lastOffset != null) {
-        _controller.position.isScrollingNotifier
-            .addListener(() => _handleOffset(_lastOffsets));
+        _controller.position.isScrollingNotifier.addListener(_handleLastOffset);
       }
     });
   }
@@ -156,15 +155,14 @@ class _CurveScrollWheelState extends State<CurveScrollWheel> {
 
       // Remove the previous `_handleOffset` listener and listen again for the new `startOffset` value.
       _controller.position.isScrollingNotifier
-          .removeListener(() => _handleOffset(_startOffsets));
-      _controller.position.isScrollingNotifier
-          .addListener(() => _handleOffset(_startOffsets));
+          .removeListener(_handleStartOffset);
+      _controller.position.isScrollingNotifier.addListener(_handleStartOffset);
     } else if (oldWidget.startOffset != widget.startOffset &&
         widget.startOffset == null) {
       // If the startOffset is null, then clear the `_startOffset` list and remove the previous listener.
       _startOffsets.clear();
       _controller.position.isScrollingNotifier
-          .removeListener(() => _handleOffset(_startOffsets));
+          .removeListener(_handleStartOffset);
     }
 
     // Resets the listener of the last offset's `_handleOffset`.
@@ -178,15 +176,14 @@ class _CurveScrollWheelState extends State<CurveScrollWheel> {
 
       // Remove the previous `_handleOffset` listener and listen again for the new `lastOffset` value.
       _controller.position.isScrollingNotifier
-          .removeListener(() => _handleOffset(_lastOffsets));
-      _controller.position.isScrollingNotifier
-          .addListener(() => _handleOffset(_lastOffsets));
+          .removeListener(_handleLastOffset);
+      _controller.position.isScrollingNotifier.addListener(_handleLastOffset);
     } else if (oldWidget.lastOffset != widget.lastOffset &&
         widget.lastOffset == null) {
       // If the lastOffset is null, then clear the `_lastOffset` list and remove the previous listener.
       _lastOffsets.clear();
       _controller.position.isScrollingNotifier
-          .removeListener(() => _handleOffset(_lastOffsets));
+          .removeListener(_handleLastOffset);
     }
   }
 
@@ -206,6 +203,12 @@ class _CurveScrollWheelState extends State<CurveScrollWheel> {
     }
   }
 
+  /// Tear-off used for add/removeListener so both calls reference the same
+  /// instance — an inline `() => _handleOffset(_startOffsets)` closure would
+  /// be a new object each time and `removeListener` would silently no-op.
+  void _handleStartOffset() => _handleOffset(_startOffsets);
+  void _handleLastOffset() => _handleOffset(_lastOffsets);
+
   /// Handles the boundary of the selection when item(s) are part of the `startOffsets` or `lastOffsets`.
   void _handleOffset(List<int> offsets) async {
     // Not do anything if it is scrolling.
@@ -221,18 +224,18 @@ class _CurveScrollWheelState extends State<CurveScrollWheel> {
 
     // If it is part of the `startOffsets` or `lastOffsets`, then proceed and not do anything otherwise.
     if (value != -1) {
-      // Get the half size or length of the start offset list.
-      final halfSize = offsets.length ~/ 2;
-      // Get the index of the value in the start offset list.
-      final index = offsets.indexOf(value);
-      // Check if the index is greater than or equal to the half size.
-      // If so, return the difference between the offset list size minus the index.
-      // Otherwise, return the index + 1 in negative value.
-      // To put it simply, we are doing this to animate towards the nearest item that is outside of the offset list.
-      final addOffset =
-          index >= halfSize ? offsets.length - index : -(index + 1);
+      // `offsets` is always a contiguous run pinned to one edge of the item
+      // list: `_startOffsets` starts at 0, `_lastOffsets` ends at the last
+      // item index. So there is exactly one valid escape direction — past
+      // whichever end of `offsets` is not also the edge of the full list.
+      final int addOffset = offsets.first == 0
+          ? offsets.last + 1 - value
+          : offsets.first - 1 - value;
 
-      // Using the `addOffset`, animate towards the nearest item by the adding the current selected item index with the `addOffset` value.
+      // Apply the correction to the controller's raw (possibly looped)
+      // index rather than jumping to the absolute target — a wheel that has
+      // scrolled through several loops corrects locally instead of jumping
+      // back across loops to the item list's absolute position.
       _controller.animateToItem(
         _controller.selectedItem + addOffset,
         duration: const Duration(milliseconds: 500),
