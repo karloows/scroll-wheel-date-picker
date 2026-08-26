@@ -234,9 +234,11 @@ class DateController with ChangeNotifier {
   /// Called when the [changeMonth] & [changeYear] is triggered.
   /// This is important so that the `total number of days` is updated when the month or year changes.
   void _updateNumberOfDays() {
-    final int numberOfDays = _getNumberOfDays(
-        year: _yearController.selectedIndex,
-        month: _monthController.selectedIndex);
+    final int year =
+        int.parse(_yearController.items[_yearController.selectedIndex]);
+
+    final int numberOfDays =
+        _getNumberOfDays(year: year, month: _monthController.selectedIndex);
 
     final int selectedIndex = _dayController.selectedIndex >= numberOfDays
         ? numberOfDays - 1
