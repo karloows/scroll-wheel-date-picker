@@ -7,7 +7,7 @@ description: Prepare scroll_wheel_date_picker for a pub.dev release - bump versi
 
 Follow `.agents/policies/publishing.md` for the semver/CHANGELOG rules. Steps:
 
-1. Diff `lib/` since the last version bump (`git log -1 --format=%H -- pubspec.yaml` then diff from there) to decide semver impact: patch/minor/major.
+1. Find the latest commit that changed the `version:` line in `pubspec.yaml` (for example with `git log -G '^version:' --format=%H -- pubspec.yaml`) and diff `lib/` from that version-bump commit to decide semver impact: patch/minor/major.
 2. Bump `version` in `pubspec.yaml` (`x.y.z+build`).
 3. Add a new entry at the top of `CHANGELOG.md` — short bullet list, matching the style of existing entries.
 4. Run `flutter analyze` and `flutter test` — both must pass.

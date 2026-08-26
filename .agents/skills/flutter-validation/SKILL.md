@@ -19,8 +19,8 @@ Use this skill when app, package, example, or test code changed.
 ## Notes
 
 - This repo does not rely on CI to catch missed local validation.
-- If a change touches only docs or repo workflow files, document review may be
-  enough.
+- If a change touches only non-Dart, non-Markdown repo files, document review
+  may be enough.
 
 ## Read These
 

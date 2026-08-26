@@ -25,7 +25,8 @@ This folder keeps repo-local guidance for AI agents working on
 3. Trace the affected public API, controller, widget, and wheel variant before
    editing.
 4. Keep the diff scoped to the requested change.
-5. Run `flutter analyze` and `flutter test` before handoff when code changed.
+5. Run `flutter analyze` and `flutter test` before handoff when Dart or
+   Markdown files changed.
 6. If `lib/` changed in a public-facing way, decide semver impact and update
    `pubspec.yaml` plus `CHANGELOG.md` in the same change.
 7. Keep `README.md` and `example/` aligned with any public API or behavior
