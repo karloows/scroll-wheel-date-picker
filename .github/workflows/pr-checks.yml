@@ -44,6 +44,7 @@ jobs:
   osv-scan:
     if: "!startsWith(github.head_ref, 'release-please--')"
     permissions:
+      actions: read
       contents: read
       security-events: write
       pull-requests: write
