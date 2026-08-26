@@ -35,6 +35,7 @@ opening a PR, merging a PR, or cleaning up a branch after merge.
 ## Trigger words
 
 When the user says **"ship"**, run without asking for confirmation:
+0. Check `git branch --show-current` FIRST. If it's the base branch (`main` or `development`), you MUST create and switch to the feature branch before touching `git add` or `git commit` — never commit on the base branch, even temporarily.
 1. `git checkout -b <type>/<short-kebab-description>` off the current base branch.
 2. Commit staged/relevant changes per the Commits section above.
 3. Push the branch.
