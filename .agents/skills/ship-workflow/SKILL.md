@@ -26,6 +26,9 @@ or opening a PR.
 ## Pull Requests
 
 - Use the same title format as commits.
+- Keep the existing PR title when it still explains the whole branch. Update it
+  only when the branch scope changed enough that the current title no longer
+  fits.
 - Keep the PR description short and public-safe.
 - Call out breaking changes explicitly.
 
