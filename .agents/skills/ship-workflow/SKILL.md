@@ -32,6 +32,20 @@ or opening a PR.
 - Keep the PR description short and public-safe.
 - Call out breaking changes explicitly.
 
+## Trigger words
+
+When the user says **"ship"**, run without asking for confirmation:
+1. `git checkout -b <type>/<short-kebab-description>` off the current base branch.
+2. Commit staged/relevant changes per the Commits section above.
+3. Push the branch.
+4. Open a PR via the `github-personal` MCP server (not `gh`) per the Pull Requests section above.
+
+When the user says **"land"**, run without asking for confirmation:
+1. Squash-and-merge the open PR via the `github-personal` MCP server.
+2. Check out the base branch the PR merged into.
+3. `git pull` to bring the merge down locally.
+4. Delete the feature branch, both local and remote.
+
 ## Read These
 
 - `.agents/policies/branch-policy.md`
