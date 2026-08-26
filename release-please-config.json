@@ -3,7 +3,13 @@
   "packages": {
     ".": {
       "release-type": "dart",
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "README.md"
+        }
+      ]
     }
   }
 }
