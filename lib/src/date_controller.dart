@@ -269,7 +269,7 @@ class DateController with ChangeNotifier {
       selectedIndex: initialDate.day - 1,
       numberOfDays: _getNumberOfDays(
         year: initialDate.year,
-        month: initialDate.month,
+        month: initialDate.month - 1,
       ),
     );
     _monthController =

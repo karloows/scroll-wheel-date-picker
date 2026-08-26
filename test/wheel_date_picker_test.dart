@@ -41,4 +41,14 @@ void main() {
 
     expect(controller.dayController.items.length, 31);
   });
+
+  test('changeInitialDate to December does not throw', () {
+    // Regression test: changeInitialDate had the same 1-indexed-month bug
+    // as the constructor (see https://github.com/karloows/scroll-wheel-date-picker/issues/9).
+    final controller = DateController(initialDate: DateTime(2024, 1, 1));
+
+    controller.changeInitialDate(DateTime(2024, 12, 24));
+
+    expect(controller.dayController.items.length, 31);
+  });
 }
