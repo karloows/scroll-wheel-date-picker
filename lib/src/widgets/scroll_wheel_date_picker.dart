@@ -277,7 +277,7 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
         widget.theme is FlatDatePickerTheme
             ? IgnorePointer(
                 child: SizedBox(
-                  height: defaultWheelPickerHeight,
+                  height: widget.theme.wheelPickerHeight,
                   child: Column(
                     children: [
                       Expanded(
@@ -293,7 +293,7 @@ class _ScrollWheelDatePickerState extends State<ScrollWheelDatePicker> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: defaultItemExtent),
+                      SizedBox(height: widget.theme.itemExtent),
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(

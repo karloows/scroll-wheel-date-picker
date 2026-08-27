@@ -7,7 +7,9 @@ class FlatDatePickerTheme extends ScrollWheelDatePickerTheme {
   ///
   /// [itemExtent] Maximum height of each [ScrollWheelDatePicker]'s items. Defaults to [defaultItemExtent].
   ///
-  /// [overAndUnderCenterOpacity] Opacity of the items in the [ScrollWheelDatePicker] that are off centered. Defaults to [defaultOpacity].
+  /// [overAndUnderCenterOpacity] Opacity of the items in the [ScrollWheelDatePicker] that are off centered.
+  /// Defaults to `1.0` (fully opaque) so the flat picker has no dimming by default. Lower this to
+  /// explicitly dim off-centered items.
   ///
   /// [monthFormat] Format of the month in the [ScrollWheelDatePicker]. Defaults to [MonthFormat.full].
   ///
@@ -19,7 +21,8 @@ class FlatDatePickerTheme extends ScrollWheelDatePickerTheme {
   ///
   /// [overlayColor] Selected item's center design color. Defaults to [Colors.black].
   ///
-  /// [fadeEdges] Apply vertical faded-edges to smoothly transition overlapping items. Defaults to `true`.
+  /// [fadeEdges] Apply vertical faded-edges to smoothly transition overlapping items. Defaults to `false`
+  /// so the flat picker has no edge fade. Set to `true` to explicitly opt into the softened wheel look.
   ///
   /// [backgroundColor] Overlay color of the [ScrollWheelDatePicker] items that are off centered. Defaults to [Colors.transparent].
 
@@ -28,12 +31,12 @@ class FlatDatePickerTheme extends ScrollWheelDatePickerTheme {
     super.itemExtent,
     super.monthFormat,
     super.locale,
-    super.overAndUnderCenterOpacity,
+    super.overAndUnderCenterOpacity = 1.0,
     super.itemTextStyle,
     super.overlay,
     super.overlayColor,
     required this.backgroundColor,
-    super.fadeEdges,
+    super.fadeEdges = false,
   });
 
   /// Overlay color of the [ScrollWheelDatePicker] items that are off centered. Defaults to [Colors.transparent].

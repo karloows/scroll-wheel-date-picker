@@ -38,7 +38,7 @@ CurveDatePickerTheme(
 
 #### Faded Vertical Edges
 
-It adds fade on top and bottom to create a smooth disapearance effect when the items are beyond the viewport. Defaults to `true`.
+It adds fade on top and bottom to create a smooth disappearance effect when the items are beyond the viewport. Defaults to `true` for `CurveDatePickerTheme`, and `false` for `FlatDatePickerTheme` (so the flat picker has no edge fade out of the box). Pass `fadeEdges: true` and lower `overAndUnderCenterOpacity` (which defaults to `1.0` on the flat theme) to opt into the softened, curve-like look on a flat picker.
 
 #### Listen On Item Changes After Animation Completed
 
@@ -50,17 +50,17 @@ Supports looping on items. You can choose whether to enable looping on `days`, `
 
 ## Demo
 
-### Curve Scroll Wheel
-
-|    Curve Holo Overlay    |    Curve Highlight Overlay    |    Curve Line Overlay    |
-| :----------------------: | :---------------------------: | :----------------------: |
-| ![](demo/curve_holo.gif) | ![](demo/curve_highlight.gif) | ![](demo/curve_line.gif) |
-
 ### Flat Scroll Wheel
 
 |    Flat Holo Overlay    |    Flat Highlight Overlay    |    Flat Line Overlay    |
 | :---------------------: | :--------------------------: | :---------------------: |
 | ![](demo/flat_holo.gif) | ![](demo/flat_highlight.gif) | ![](demo/flat_line.gif) |
+
+### Curve Scroll Wheel
+
+|    Curve Holo Overlay    |    Curve Highlight Overlay    |    Curve Line Overlay    |
+| :----------------------: | :---------------------------: | :----------------------: |
+| ![Curve holo overlay demo](demo/curve_holo.gif) | ![Curve highlight overlay demo](demo/curve_highlight.gif) | ![Curve line overlay demo](demo/curve_line.gif) |
 
 # Usage
 
@@ -92,6 +92,17 @@ ScrollWheelDatePicker(
     overlay: ScrollWheelDatePickerOverlay.holo,
     itemTextStyle: defaultItemTextStyle.copyWith(color: Colors.black),
     overlayColor: Colors.black,
+  ),
+),
+```
+
+`FlatDatePickerTheme` renders fully flat by default: no edge fade, off-center items at full opacity. To opt into the softened, curve-like dimming instead:
+
+```dart
+ScrollWheelDatePicker(
+  theme: FlatDatePickerTheme(
+    backgroundColor: Colors.white,
+    fadeEdges: true,
     overAndUnderCenterOpacity: 0.2,
   ),
 ),
