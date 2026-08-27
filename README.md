@@ -60,7 +60,7 @@ Supports looping on items. You can choose whether to enable looping on `days`, `
 
 |    Curve Holo Overlay    |    Curve Highlight Overlay    |    Curve Line Overlay    |
 | :----------------------: | :---------------------------: | :----------------------: |
-| ![](demo/curve_holo.gif) | ![](demo/curve_highlight.gif) | ![](demo/curve_line.gif) |
+| ![Curve holo overlay demo](demo/curve_holo.gif) | ![Curve highlight overlay demo](demo/curve_highlight.gif) | ![Curve line overlay demo](demo/curve_line.gif) |
 
 # Usage
 
