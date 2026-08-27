@@ -16,6 +16,13 @@
 * **dev:** drop version build number to stop release-please stacking it ([#33](https://github.com/karloows/scroll-wheel-date-picker/issues/33)) ([17bf56f](https://github.com/karloows/scroll-wheel-date-picker/commit/17bf56fd73413d9f4bb809b76fa10c838086dd7f))
 * **widgets:** fix offset-listener leak and wrong-direction boundary snap ([#30](https://github.com/karloows/scroll-wheel-date-picker/issues/30)) ([8d38ebc](https://github.com/karloows/scroll-wheel-date-picker/commit/8d38ebc564fb874c523abfdaa3351c0b1811ec31))
 
+## [0.1.1](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.0...v0.1.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* **themes:** flatten flat picker defaults ([dd03910](https://github.com/karloows/scroll-wheel-date-picker/commit/dd0391001d6ca61ec81bc59c857e6dd95f524cfc))
+
 ## 0.0.2+1
 
 - Fix README.md
