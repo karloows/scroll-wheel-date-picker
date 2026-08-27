@@ -77,7 +77,7 @@ or
 
 ```yaml
 dependencies:
-  scroll_wheel_date_picker: ^0.1.3 # x-release-please-version
+  scroll_wheel_date_picker: ^0.2.0 # x-release-please-version
 ```
 
 Then import the package.
