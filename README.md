@@ -1,5 +1,8 @@
 # Scroll Wheel Date Picker
 
+[![pub package](https://img.shields.io/pub/v/scroll_wheel_date_picker.svg)](https://pub.dev/packages/scroll_wheel_date_picker)
+[![license](https://img.shields.io/github/license/karloows/scroll-wheel-date-picker)](LICENSE)
+
 Have you been in a situation where you want to use [CupertinoDatePicker](https://api.flutter.dev/flutter/cupertino/CupertinoDatePicker-class.html) but sadly you can't achieve a flat scroll view just like in android TikTok?
 Or maybe, you also resorted using [ListWheelScrollView](https://api.flutter.dev/flutter/widgets/ListWheelScrollView-class.html) yet still the same?
 
@@ -58,11 +61,11 @@ Supports looping on items. You can choose whether to enable looping on `days`, `
 
 ### Curve Scroll Wheel
 
-|    Curve Holo Overlay    |    Curve Highlight Overlay    |    Curve Line Overlay    |
-| :----------------------: | :---------------------------: | :----------------------: |
+|               Curve Holo Overlay                |                  Curve Highlight Overlay                  |               Curve Line Overlay                |
+| :---------------------------------------------: | :-------------------------------------------------------: | :---------------------------------------------: |
 | ![Curve holo overlay demo](demo/curve_holo.gif) | ![Curve highlight overlay demo](demo/curve_highlight.gif) | ![Curve line overlay demo](demo/curve_line.gif) |
 
-# Usage
+## Usage
 
 Add the package to `pubspec.yaml`
 
@@ -83,17 +86,61 @@ Then import the package.
 import 'package:scroll_wheel_date_picker/scroll_wheel_date_picker.dart';
 ```
 
-And use like this...
+Here is an example with bounds, callback, custom column order, and the flat wheel theme:
 
 ```dart
-ScrollWheelDatePicker(
-  theme: FlatDatePickerTheme(
-    backgroundColor: Colors.white,
-    overlay: ScrollWheelDatePickerOverlay.holo,
-    itemTextStyle: defaultItemTextStyle.copyWith(color: Colors.black),
-    overlayColor: Colors.black,
-  ),
-),
+class BirthdayPicker extends StatefulWidget {
+  const BirthdayPicker({super.key});
+
+  @override
+  State<BirthdayPicker> createState() => _BirthdayPickerState();
+}
+
+class _BirthdayPickerState extends State<BirthdayPicker> {
+  DateTime selectedDate = DateTime(2000, 6, 15);
+
+  @override
+  Widget build(BuildContext context) {
+    final today = DateTime.now();
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: 200,
+          child: ScrollWheelDatePicker(
+            initialDate: selectedDate,
+            startDate: DateTime(1950, 1, 1),
+            lastDate: DateTime(today.year, today.month, today.day),
+            loopDays: true,
+            loopMonths: true,
+            loopYears: false,
+            listenAfterAnimation: true,
+            columnOrder: const [
+              DatePickerColumn.month,
+              DatePickerColumn.day,
+              DatePickerColumn.year,
+            ],
+            onSelectedItemChanged: (value) {
+              setState(() => selectedDate = value);
+            },
+            theme: FlatDatePickerTheme(
+              backgroundColor: Colors.white,
+              overlay: ScrollWheelDatePickerOverlay.holo,
+              itemTextStyle: defaultItemTextStyle.copyWith(
+                color: Colors.black,
+              ),
+              overlayColor: Colors.black,
+              monthFormat: MonthFormat.threeLetters,
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text('Selected: $selectedDate'),
+      ],
+    );
+  }
+}
 ```
 
 `FlatDatePickerTheme` renders fully flat by default: no edge fade, off-center items at full opacity. To opt into the softened, curve-like dimming instead:
@@ -107,6 +154,57 @@ ScrollWheelDatePicker(
   ),
 ),
 ```
+
+### Main options
+
+| Property | Type | Default | Notes |
+| :------- | :--- | :------ | :---- |
+| `initialDate` | `DateTime?` | `DateTime.now()` | Initial selected date. |
+| `startDate` | `DateTime?` | `0001-01-01` | Lower selection bound. |
+| `lastDate` | `DateTime?` | `9999-12-31` | Upper selection bound. |
+| `loopDays` | `bool` | `true` | Loops the day wheel. |
+| `loopMonths` | `bool` | `true` | Loops the month wheel. |
+| `loopYears` | `bool` | `false` | Year looping is off by default. |
+| `listenAfterAnimation` | `bool` | `true` | Fires the callback after the wheel settles. |
+| `onSelectedItemChanged` | `Function(DateTime value)?` | `null` | Receives the selected date. |
+| `columnOrder` | `List<DatePickerColumn>` | `[day, month, year]` | Reorders the three wheels left-to-right. |
+| `scrollBehavior` | `ScrollBehavior?` | `null` | Optional scroll behavior override. |
+| `theme` | `ScrollWheelDatePickerTheme` | required | Use `FlatDatePickerTheme` or `CurveDatePickerTheme`. |
+
+### Theme options
+
+| Property | Applies to | Default | Notes |
+| :------- | :--------- | :------ | :---- |
+| `wheelPickerHeight` | both | package default | Overall picker height. |
+| `itemExtent` | both | package default | Height of each visible row. |
+| `monthFormat` | both | `MonthFormat.full` | `full`, `threeLetters`, or `twoLetters`. |
+| `locale` | both | `null` | Uses localized month names through `intl`. |
+| `itemTextStyle` | both | package default | Style for visible items. |
+| `overlay` | both | `holo` | Selected-row overlay style. |
+| `overlayColor` | both | overlay-specific | Selected-row overlay color. |
+| `fadeEdges` | both | `true` on curve, `false` on flat | Top and bottom fade mask. |
+| `overAndUnderCenterOpacity` | both | themed default | Off-center item opacity. |
+| `backgroundColor` | flat only | required | Background fill for the flat wheel. |
+| `diameterRatio` | curve only | package default | Controls curve depth. Must be positive. |
+
+### Flat vs curve
+
+| Theme | Best for | Default look |
+| :---- | :------- | :----------- |
+| `FlatDatePickerTheme` | Android-style or fully flat pickers | No edge fade and no off-center dimming |
+| `CurveDatePickerTheme` | iOS-like wheel perspective | Curved wheel with edge fade enabled |
+
+### Notes and limitations
+
+- `startDate` must be before `lastDate`, and `initialDate` must stay within the allowed range.
+- `locale` defaults to English. If you pass another locale, call `initializeDateFormatting()` from `package:intl/date_symbol_data_local.dart` before building the picker.
+- `MonthFormat.twoLetters` with localized month names can collide in some languages. Use `MonthFormat.threeLetters` if you need unique labels.
+- Days automatically adjust when the selected month or year changes, including leap years.
+- When `listenAfterAnimation` is `false`, `onSelectedItemChanged` fires while the wheel is still moving.
+
+## Example app
+
+There is a runnable example app in [example/lib/main.dart](example/lib/main.dart) plus focused sample widgets in [example/lib/src/widgets/](example/lib/src/widgets/).
 
 ## Development
 
@@ -124,12 +222,27 @@ fvm flutter analyze
 fvm flutter test
 ```
 
+## Contributing
+
+Pull requests are welcome. If you change behavior or public API, keep the README and example app in sync.
+
+Before opening a PR, run:
+
+```bash
+fvm flutter analyze
+fvm flutter test
+```
+
+## Issues
+
+Bug reports and feature requests are best opened in the [GitHub issue tracker](https://github.com/karloows/scroll-wheel-date-picker/issues).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
 ## Contributors
 
 <a href="https://github.com/karloows/scroll-wheel-date-picker/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=karloows/scroll-wheel-date-picker" />
 </a>
-
----
-
-_Ghian Tan_ @ _Fingertips_ ([Github](https://github.com/karloows))

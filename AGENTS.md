@@ -18,6 +18,8 @@ Policies (read all, they're short): [.agents/policies/publishing.md](.agents/pol
 
 - Don't commit or push directly to `main` unless explicitly asked — see [.agents/policies/branch-policy.md](.agents/policies/branch-policy.md) for branch naming.
 - Commit messages follow [.agents/policies/commit-policy.md](.agents/policies/commit-policy.md) — conventional commits with a required body.
+- `ship` means: create and check out a new branch that follows branch policy, commit the work, push the branch, and open a PR using the `github-personal` MCP server. Do not use the `gh` CLI for PR work in this repo.
+- `land` means: squash-merge the PR, switch the local checkout back to `main`, pull the merged changes, and delete the local branch.
 
 ## Conventions
 
