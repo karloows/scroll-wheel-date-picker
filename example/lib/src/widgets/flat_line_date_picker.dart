@@ -30,7 +30,6 @@ class FlatLineDatePicker extends StatelessWidget {
               itemTextStyle: defaultItemTextStyle,
               monthFormat: MonthFormat.twoLetters,
               overlayColor: Colors.white,
-              overAndUnderCenterOpacity: 0.2,
             ),
           ),
         ),

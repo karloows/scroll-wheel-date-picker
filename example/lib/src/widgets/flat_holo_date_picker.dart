@@ -30,7 +30,6 @@ class FlatHoloDatePicker extends StatelessWidget {
               overlay: ScrollWheelDatePickerOverlay.holo,
               itemTextStyle: defaultItemTextStyle.copyWith(color: Colors.black),
               overlayColor: Colors.black,
-              overAndUnderCenterOpacity: 0.2,
             ),
           ),
         ),
