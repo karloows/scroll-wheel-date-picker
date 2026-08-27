@@ -132,4 +132,4 @@ fvm flutter test
 
 ---
 
-_Ghian Tan_ @ _Fingertips_ ([Github](https://github.com/karloows))
+_Karloos_ ([Github](https://github.com/karloows))
