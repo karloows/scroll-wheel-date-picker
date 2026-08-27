@@ -1,3 +1,11 @@
+## [0.1.3](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.2...v0.1.3) (2026-08-27)
+
+
+### Documentation
+
+* expand README package docs and examples
+* document repo-specific ship and land workflow
+
 ## [0.1.2](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.1...v0.1.2) (2026-08-27)
 
 
