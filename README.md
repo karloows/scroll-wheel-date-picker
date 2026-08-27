@@ -50,17 +50,17 @@ Supports looping on items. You can choose whether to enable looping on `days`, `
 
 ## Demo
 
-### Curve Scroll Wheel
-
-|    Curve Holo Overlay    |    Curve Highlight Overlay    |    Curve Line Overlay    |
-| :----------------------: | :---------------------------: | :----------------------: |
-| ![](demo/curve_holo.gif) | ![](demo/curve_highlight.gif) | ![](demo/curve_line.gif) |
-
 ### Flat Scroll Wheel
 
 |    Flat Holo Overlay    |    Flat Highlight Overlay    |    Flat Line Overlay    |
 | :---------------------: | :--------------------------: | :---------------------: |
 | ![](demo/flat_holo.gif) | ![](demo/flat_highlight.gif) | ![](demo/flat_line.gif) |
+
+### Curve Scroll Wheel
+
+|    Curve Holo Overlay    |    Curve Highlight Overlay    |    Curve Line Overlay    |
+| :----------------------: | :---------------------------: | :----------------------: |
+| ![](demo/curve_holo.gif) | ![](demo/curve_highlight.gif) | ![](demo/curve_line.gif) |
 
 # Usage
 
