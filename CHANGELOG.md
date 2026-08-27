@@ -1,3 +1,15 @@
+## [0.1.2](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.1...v0.1.2) (2026-08-27)
+
+
+### Documentation
+
+* **changelog:** keep 0.1.1 entry above 0.1.0
+
+
+### Continuous Integration
+
+* **dev:** use release-please token for release PRs
+
 ## [0.1.1](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.0...v0.1.1) (2026-08-27)
 
 
