@@ -1,7 +1,9 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:scroll_wheel_date_picker/scroll_wheel_date_picker.dart';
+import 'package:flutter/material.dart' show Locale;
+import 'package:flutter_test/flutter_test.dart'
+    show test, expect, TestWidgetsFlutterBinding, group, isA, throwsA, setUpAll;
+import 'package:intl/date_symbol_data_local.dart' show initializeDateFormatting;
+import 'package:scroll_wheel_date_picker/scroll_wheel_date_picker.dart'
+    show DateController, MonthFormat;
 
 void main() {
   // `changeMonth`/`changeYear` defer their notifyListeners to a

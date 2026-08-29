@@ -1,4 +1,4 @@
-import '../date_controller.dart';
+import '../date_controller.dart' show DateController;
 
 /// Enum for [DateController]'s month format values.
 enum Month {

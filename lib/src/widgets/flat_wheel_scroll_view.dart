@@ -1,7 +1,37 @@
-import 'dart:math' as math;
-
-import 'package:flutter/physics.dart';
-import 'package:flutter/widgets.dart';
+import 'dart:math' show min, max;
+import 'dart:async' show Future;
+import 'package:flutter/physics.dart'
+    show Simulation, SpringSimulation, FrictionSimulation;
+import 'package:flutter/widgets.dart'
+    show
+        StatefulWidget,
+        State,
+        Widget,
+        BuildContext,
+        ScrollController,
+        ScrollPhysics,
+        ScrollBehavior,
+        NotificationListener,
+        ScrollNotification,
+        LayoutBuilder,
+        Viewport,
+        SliverFixedExtentList,
+        SliverChildBuilderDelegate,
+        Scrollable,
+        ScrollableState,
+        ScrollPositionWithSingleContext,
+        ScrollContext,
+        FixedScrollMetrics,
+        AxisDirection,
+        ValueChanged,
+        Key,
+        ValueKey,
+        ScrollUpdateNotification,
+        BoxConstraints,
+        ScrollConfiguration,
+        ScrollPosition,
+        ScrollMetrics,
+        Curve;
 
 class FlatWheelScrollView extends StatefulWidget {
   /// `Based on [ListWheelScrollView] but with a flat perspective.`
@@ -457,5 +487,5 @@ double _clipOffsetToScrollableRange(
   double minScrollExtent,
   double maxScrollExtent,
 ) {
-  return math.min(math.max(offset, minScrollExtent), maxScrollExtent);
+  return min(max(offset, minScrollExtent), maxScrollExtent);
 }

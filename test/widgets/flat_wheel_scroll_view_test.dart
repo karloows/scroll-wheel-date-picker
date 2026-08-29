@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:scroll_wheel_date_picker/src/widgets/flat_wheel_scroll_view.dart';
+import 'package:flutter/material.dart'
+    show MaterialApp, Scaffold, SizedBox, Text, Widget;
+import 'package:flutter/foundation.dart' show ValueChanged;
+import 'package:flutter_test/flutter_test.dart'
+    show testWidgets, expect, find, findsOneWidget, addTearDown;
+import 'package:scroll_wheel_date_picker/src/widgets/flat_wheel_scroll_view.dart'
+    show FlatWheelScrollView, FlatScrollController;
 
 Widget _harness({
   required int itemCount,
