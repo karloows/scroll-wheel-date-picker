@@ -5,8 +5,11 @@
 /// - [DateController] owns the picker's date state.
 /// - [ScrollWheelDatePickerTheme], [CurveDatePickerTheme], and
 ///   [FlatDatePickerTheme] configure the picker's appearance and variant.
-/// - [ScrollWheelDatePickerOverlay], [Month], [MonthFormat], and
-///   [DatePickerColumn] are supporting enums used by the theme and controller.
+/// - [ScrollWheelDatePickerOverlay] configures the theme's centered overlay.
+/// - [Month] and [MonthFormat] are supporting enums used by the theme and
+///   controller.
+/// - [DatePickerColumn] configures the wheel order on
+///   [ScrollWheelDatePicker].
 library;
 
 export 'src/themes/scroll_wheel_date_picker_theme.dart';

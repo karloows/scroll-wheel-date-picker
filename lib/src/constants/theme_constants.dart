@@ -33,7 +33,7 @@ enum ScrollWheelDatePickerOverlay {
   /// A solid highlight band behind the selected item.
   highlight,
 
-  /// A single line above and below the selection.
+  /// Two lines, one above and one below the selection.
   line,
 }
 

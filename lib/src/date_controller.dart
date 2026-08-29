@@ -148,13 +148,15 @@ class DateController with ChangeNotifier {
   /// The date currently represented by the day/month/year wheels.
   DateTime get dateTime => _dateTime;
 
-  /// The lowest selectable month (1-indexed) for the current year, or `null` if unconstrained.
+  /// The lowest selectable month for the current year, as a zero-based wheel
+  /// offset, or `null` if unconstrained.
   int? get startMonth => _startMonth;
 
   /// The highest selectable month (1-indexed) for the current year, or `null` if unconstrained.
   int? get lastMonth => _lastMonth;
 
-  /// The lowest selectable day for the current month/year, or `null` if unconstrained.
+  /// The lowest selectable day for the current month/year, as a zero-based
+  /// wheel offset, or `null` if unconstrained.
   int? get startDay => _startDay;
 
   /// The highest selectable day for the current month/year, or `null` if unconstrained.
