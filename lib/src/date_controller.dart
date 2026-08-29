@@ -136,13 +136,30 @@ class DateController with ChangeNotifier {
   /// Sets the last day of the day items selection.
   int? _lastDay;
 
+  /// Current day-wheel state (selected index and item count).
   IDateController get dayController => _dayController;
+
+  /// Current month-wheel state (selected index and item count).
   IDateController get monthController => _monthController;
+
+  /// Current year-wheel state (selected index and item count).
   IDateController get yearController => _yearController;
+
+  /// The date currently represented by the day/month/year wheels.
   DateTime get dateTime => _dateTime;
+
+  /// The lowest selectable month for the current year, as a zero-based wheel
+  /// offset, or `null` if unconstrained.
   int? get startMonth => _startMonth;
+
+  /// The highest selectable month (1-indexed) for the current year, or `null` if unconstrained.
   int? get lastMonth => _lastMonth;
+
+  /// The lowest selectable day for the current month/year, as a zero-based
+  /// wheel offset, or `null` if unconstrained.
   int? get startDay => _startDay;
+
+  /// The highest selectable day for the current month/year, or `null` if unconstrained.
   int? get lastDay => _lastDay;
 
   /// Called when the selected item of the days [CurveScrollWheel] or [FlatScrollWheel] changed.
@@ -627,7 +644,13 @@ String _capitalize(String s) {
 
 /// An abstract class for the [_DayController], [_MonthController] and [_YearController].
 abstract interface class IDateController {
+  /// Returns a copy of this controller. Implementations accept optional
+  /// named overrides for their fields.
   IDateController copyWith();
+
+  /// Index of the currently selected item within [items].
   int get selectedIndex;
+
+  /// The list of items shown in the wheel.
   List<String> get items;
 }

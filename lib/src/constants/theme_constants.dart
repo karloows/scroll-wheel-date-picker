@@ -24,9 +24,16 @@ const TextStyle defaultItemTextStyle = TextStyle(
 
 /// Enum for [ScrollWheelDatePicker]'s centered overlay.
 enum ScrollWheelDatePickerOverlay {
+  /// No overlay decoration.
   none,
+
+  /// A holographic-style overlay with lines above and below the selection.
   holo,
+
+  /// A solid highlight band behind the selected item.
   highlight,
+
+  /// Two lines, one above and one below the selection.
   line,
 }
 

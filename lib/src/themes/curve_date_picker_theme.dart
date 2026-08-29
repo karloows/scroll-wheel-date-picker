@@ -1,5 +1,7 @@
 part of 'scroll_wheel_date_picker_theme.dart';
 
+/// Theme for [ScrollWheelDatePicker] rendered with [CurveScrollWheel]'s
+/// perspective, curved wheel effect.
 class CurveDatePickerTheme extends ScrollWheelDatePickerTheme {
   /// Theme for the `CurveScrollWheel`. [CurveScrollWheel]
   ///

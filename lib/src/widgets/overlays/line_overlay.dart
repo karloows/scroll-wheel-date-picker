@@ -14,6 +14,7 @@ import 'package:flutter/material.dart'
 import '../../constants/theme_constants.dart'
     show defaultModeMargin, defaultModeBorderThickness;
 
+/// Two horizontal lines, one above and one below the selected item.
 class LineOverlay extends StatelessWidget {
   /// Creates a horizontal parallel lines.
   const LineOverlay({

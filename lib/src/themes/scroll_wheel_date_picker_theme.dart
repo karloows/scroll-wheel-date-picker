@@ -16,6 +16,10 @@ import '../constants/date_constants.dart' show MonthFormat;
 part 'curve_date_picker_theme.dart';
 part 'flat_date_picker_theme.dart';
 
+/// Base theme configuration shared by [ScrollWheelDatePicker] variants.
+///
+/// Extended by [CurveDatePickerTheme] and [FlatDatePickerTheme], which add
+/// fields specific to their scroll-wheel implementation.
 abstract class ScrollWheelDatePickerTheme {
   /// An abstract class for common themes of the `ScrollWheelDatePicker`. [ScrollWheelDatePicker]
   ///

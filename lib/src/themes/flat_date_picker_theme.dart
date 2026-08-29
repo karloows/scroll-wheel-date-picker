@@ -1,5 +1,7 @@
 part of 'scroll_wheel_date_picker_theme.dart';
 
+/// Theme for [ScrollWheelDatePicker] rendered with [FlatScrollWheel]'s
+/// flat (non-perspective) wheel effect.
 class FlatDatePickerTheme extends ScrollWheelDatePickerTheme {
   /// Theme for the `FlatScrollWheel`. [FlatScrollWheel]
   ///

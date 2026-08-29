@@ -12,6 +12,7 @@ import 'package:flutter/material.dart'
 
 import '../../constants/theme_constants.dart' show defaultOpacity;
 
+/// A solid rounded-rectangle highlight band drawn behind the selected item.
 class HightlightOverlay extends StatelessWidget {
   /// Creates a rounded rectangle background with the default [CupertinoContextMenu.kOpenBorderRadius] radius.
   const HightlightOverlay({

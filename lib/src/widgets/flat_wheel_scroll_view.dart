@@ -33,6 +33,8 @@ import 'package:flutter/widgets.dart'
         ScrollMetrics,
         Curve;
 
+/// A scroll view that reimplements `ListWheelScrollView`'s centered-selection
+/// and looping behavior without its curve perspective.
 class FlatWheelScrollView extends StatefulWidget {
   /// `Based on [ListWheelScrollView] but with a flat perspective.`
   ///
@@ -207,7 +209,9 @@ class _FlatWheelScrollViewState extends State<FlatWheelScrollView> {
   }
 }
 
+/// [FixedScrollMetrics] extended with the currently selected [itemIndex].
 class FlatMetrics extends FixedScrollMetrics {
+  /// Creates metrics for a [FlatWheelScrollView] at a given scroll position.
   FlatMetrics({
     required super.minScrollExtent,
     required super.maxScrollExtent,
@@ -241,7 +245,7 @@ class FlatMetrics extends FixedScrollMetrics {
     );
   }
 
-  // The scroll view's currently selected item index
+  /// The scroll view's currently selected item index.
   final int itemIndex;
 }
 
@@ -335,11 +339,16 @@ class _FlatScrollPosition extends ScrollPositionWithSingleContext
   }
 }
 
+/// A [ScrollController] for [FlatWheelScrollView] that tracks and animates
+/// to item indices rather than raw pixel offsets.
 class FlatScrollController extends ScrollController {
+  /// Creates a controller starting at [initialItem].
   FlatScrollController({this.initialItem = 0});
 
+  /// The item index to scroll to when first attaching to a scroll view.
   final int initialItem;
 
+  /// Index of the item currently centered in the viewport.
   int get selectedItem => (position as _FlatScrollPosition).itemIndex;
 
   /// Animate to a specific item index
@@ -386,7 +395,10 @@ class FlatScrollController extends ScrollController {
   }
 }
 
+/// Scroll physics that settle onto the nearest item after any fling or drag,
+/// like a slot-machine wheel.
 class FlatScrollPhysics extends ScrollPhysics {
+  /// Creates flat wheel scroll physics.
   const FlatScrollPhysics({super.parent});
 
   @override
