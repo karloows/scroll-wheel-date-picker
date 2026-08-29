@@ -12,6 +12,8 @@ import 'package:flutter/material.dart'
 
 import 'scroll_wheel_date_picker.dart';
 
+/// A single label rendered inside a [ScrollWheelDatePicker] wheel, scaled to
+/// fit its allotted space.
 class ScrollItem extends StatelessWidget {
   /// Item of a [ScrollWheelDatePicker] type.
   ///

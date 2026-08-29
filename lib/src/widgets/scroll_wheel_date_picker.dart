@@ -31,6 +31,8 @@ import '../date_controller.dart';
 import 'curve_scroll_wheel.dart';
 import 'flat_scroll_wheel.dart';
 
+/// A date picker made of three independent scroll wheels (day, month, year),
+/// styled by a [ScrollWheelDatePickerTheme].
 class ScrollWheelDatePicker extends StatefulWidget {
   /// A scroll wheel date picker that has two types:
   ///

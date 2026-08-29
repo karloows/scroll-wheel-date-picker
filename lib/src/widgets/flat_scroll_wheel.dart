@@ -13,6 +13,8 @@ import 'package:flutter/material.dart'
 import 'flat_wheel_scroll_view.dart';
 import 'scroll_item.dart';
 
+/// A scroll wheel built on [FlatWheelScrollView] with a flat (non-curved)
+/// perspective.
 class FlatScrollWheel extends StatefulWidget {
   /// `Based on [ListWheelScrollView] but with a flat perspective.`
   ///

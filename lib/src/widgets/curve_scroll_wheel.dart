@@ -17,6 +17,8 @@ import 'package:flutter/material.dart'
 
 import 'scroll_item.dart';
 
+/// A widget that uses [ListWheelScrollView] to create a scroll wheel with a
+/// curve perspective.
 class CurveScrollWheel extends StatefulWidget {
   /// `A widget that uses [ListWheelScrollView] to create a scroll with a curve perspective.`
   ///

@@ -17,6 +17,8 @@ import 'package:flutter/material.dart'
 import '../../constants/theme_constants.dart'
     show defaultModeMargin, defaultModeBorderThickness, defaultModeSpacing;
 
+/// A holographic-style overlay of three horizontal bracket lines around the
+/// selected item.
 class HoloOverlay extends StatelessWidget {
   /// Create a horizontal parallel lines separated with a space.
   const HoloOverlay({
