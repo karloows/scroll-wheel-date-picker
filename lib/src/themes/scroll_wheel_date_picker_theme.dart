@@ -1,10 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show TextStyle, Color, Locale, Colors;
 
-import '../widgets/scroll_wheel_date_picker.dart';
-import '../widgets/curve_scroll_wheel.dart';
-import '../constants/theme_constants.dart';
-import '../widgets/flat_scroll_wheel.dart';
-import '../constants/date_constants.dart';
+import '../widgets/scroll_wheel_date_picker.dart' show ScrollWheelDatePicker;
+import '../widgets/curve_scroll_wheel.dart' show CurveScrollWheel;
+import '../constants/theme_constants.dart'
+    show
+        defaultWheelPickerHeight,
+        defaultItemExtent,
+        defaultOpacity,
+        defaultItemTextStyle,
+        ScrollWheelDatePickerOverlay,
+        defaultDiameterRatio;
+import '../widgets/flat_scroll_wheel.dart' show FlatScrollWheel;
+import '../constants/date_constants.dart' show MonthFormat;
 
 part 'curve_date_picker_theme.dart';
 part 'flat_date_picker_theme.dart';

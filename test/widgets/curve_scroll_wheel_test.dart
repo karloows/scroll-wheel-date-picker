@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:scroll_wheel_date_picker/src/widgets/curve_scroll_wheel.dart';
+import 'package:flutter/material.dart'
+    show MaterialApp, Scaffold, Widget, SizedBox, ValueChanged, Offset;
+import 'package:flutter_test/flutter_test.dart' show testWidgets, expect, find;
+import 'package:scroll_wheel_date_picker/src/widgets/curve_scroll_wheel.dart'
+    show CurveScrollWheel;
 
 Widget _harness({
   required List<String> items,

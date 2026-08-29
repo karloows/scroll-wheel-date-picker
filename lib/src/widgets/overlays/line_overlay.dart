@@ -1,6 +1,18 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        StatelessWidget,
+        Widget,
+        BuildContext,
+        Container,
+        EdgeInsets,
+        Border,
+        BorderSide,
+        Colors,
+        BoxDecoration,
+        Color;
 
-import '../../constants/theme_constants.dart';
+import '../../constants/theme_constants.dart'
+    show defaultModeMargin, defaultModeBorderThickness;
 
 class LineOverlay extends StatelessWidget {
   /// Creates a horizontal parallel lines.

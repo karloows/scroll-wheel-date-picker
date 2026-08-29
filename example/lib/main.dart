@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show StatelessWidget, Widget, BuildContext, MaterialApp, ThemeData, runApp;
 
-import 'scroll_wheel_date_picker.dart';
+import 'scroll_wheel_date_picker.dart' show ScrollWheelDatePicker;
 
 void main() {
   runApp(const App());

@@ -1,7 +1,26 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:scroll_wheel_date_picker/scroll_wheel_date_picker.dart';
-import 'package:scroll_wheel_date_picker/src/widgets/flat_wheel_scroll_view.dart';
+import 'package:flutter/material.dart'
+    show MaterialApp, Scaffold, Colors, SizedBox, Row, Column, ShaderMask;
+import 'package:flutter_test/flutter_test.dart'
+    show
+        testWidgets,
+        expect,
+        find,
+        findsOneWidget,
+        test,
+        isFalse,
+        isTrue,
+        findsWidgets,
+        findsNothing;
+import 'package:scroll_wheel_date_picker/scroll_wheel_date_picker.dart'
+    show
+        ScrollWheelDatePicker,
+        CurveDatePickerTheme,
+        FlatDatePickerTheme,
+        DatePickerColumn,
+        defaultOpacity;
+import 'package:scroll_wheel_date_picker/src/widgets/flat_wheel_scroll_view.dart'
+    show FlatWheelScrollView;
+import 'package:flutter/material.dart' show ListWheelScrollView;
 
 void main() {
   testWidgets('ScrollWheelDatePicker renders with curve theme', (

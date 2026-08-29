@@ -1,6 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        StatelessWidget,
+        Widget,
+        BuildContext,
+        Container,
+        EdgeInsets,
+        Row,
+        Expanded,
+        Border,
+        BorderSide,
+        SizedBox,
+        Colors,
+        BoxDecoration,
+        Color;
 
-import '../../constants/theme_constants.dart';
+import '../../constants/theme_constants.dart'
+    show defaultModeMargin, defaultModeBorderThickness, defaultModeSpacing;
 
 class HoloOverlay extends StatelessWidget {
   /// Create a horizontal parallel lines separated with a space.

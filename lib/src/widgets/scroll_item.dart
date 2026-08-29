@@ -1,4 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        StatelessWidget,
+        Widget,
+        BuildContext,
+        Align,
+        Alignment,
+        FittedBox,
+        BoxFit,
+        Text,
+        TextStyle;
 
 import 'scroll_wheel_date_picker.dart';
 
