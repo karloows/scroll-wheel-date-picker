@@ -1,6 +1,6 @@
-# Agents Folder Guide
+# Claude Folder Guide
 
-This folder keeps repo-local guidance for AI agents working on
+This folder keeps repo-local guidance for Claude-style agents working on
 `scroll_wheel_date_picker`.
 
 ## Purpose
@@ -11,10 +11,10 @@ This folder keeps repo-local guidance for AI agents working on
 
 ## Structure
 
-- `.agents/policies/`
+- `.claude/policies/`
   - Short rules for publishing, public-repo hygiene, branches, commits, PRs,
     and dependencies.
-- `.agents/skills/`
+- `.claude/skills/`
   - Repo-local skills for package work such as bug fixing, validation,
     reviews, testing, and ship workflow.
 

@@ -1,9 +1,9 @@
 name: scroll_wheel_date_picker
 description: "A Flutter package for a scrollable and flat perspective wheel-type date picker like in TikTok."
 version: 0.1.3
-
 homepage: https://github.com/karloows/scroll-wheel-date-picker
 repository: https://github.com/karloows/scroll-wheel-date-picker
+issue_tracker: https://github.com/karloows/scroll-wheel-date-picker/issues
 
 environment:
   sdk: ">=3.2.5 <4.0.0"
@@ -27,3 +27,17 @@ topics:
   - widgets
   - scroll
   - wheel
+
+screenshots:
+  - description: Flat picker with holo overlay.
+    path: demo/flat_holo.gif
+  - description: Flat picker with highlight overlay.
+    path: demo/flat_highlight.gif
+  - description: Flat picker with line overlay.
+    path: demo/flat_line.gif
+  - description: Curve picker with holo overlay.
+    path: demo/curve_holo.gif
+  - description: Curve picker with highlight overlay.
+    path: demo/curve_highlight.gif
+  - description: Curve picker with line overlay.
+    path: demo/curve_line.gif

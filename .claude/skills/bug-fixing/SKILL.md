@@ -33,6 +33,6 @@ limits, wheel-selection issues, or theme-specific rendering bugs.
 ## Read These
 
 - `CLAUDE.md`
-- `.agents/policies/publishing.md`
-- `.agents/policies/public-repo.md`
-- `.agents/policies/dependency-policy.md`
+- `.claude/policies/publishing.md`
+- `.claude/policies/public-repo.md`
+- `.claude/policies/dependency-policy.md`
