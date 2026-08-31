@@ -5,7 +5,7 @@ description: Prepare scroll_wheel_date_picker for a pub.dev release - bump versi
 
 # Publish checklist
 
-Follow `.agents/policies/publishing.md` for the semver/CHANGELOG rules. Steps:
+Follow `.claude/policies/publishing.md` for the semver/CHANGELOG rules. Steps:
 
 1. Find the latest commit that changed the `version:` line in `pubspec.yaml` (for example with `git log -G '^version:' --format=%H -- pubspec.yaml`) and diff `lib/` from that version-bump commit to decide semver impact: patch/minor/major.
 2. Bump `version` in `pubspec.yaml` (`x.y.z+build`).
