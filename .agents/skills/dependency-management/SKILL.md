@@ -20,8 +20,9 @@ choices.
 
 - Touch `pubspec.lock` only when the work requires it.
 - Keep `example/` building against the local package after dependency changes.
-- If a dependency change also changes the public package behavior, update
-  `CHANGELOG.md` and the package version when required.
+- If a dependency change also changes the public package behavior, note the
+  semver impact in the commit or PR body and leave `CHANGELOG.md` plus the
+  package version unchanged until the publishing flow.
 
 ## Read These
 

@@ -27,8 +27,9 @@ This folder keeps repo-local guidance for Claude-style agents working on
 4. Keep the diff scoped to the requested change.
 5. Run `flutter analyze` and `flutter test` before handoff when Dart or
    Markdown files changed.
-6. If `lib/` changed in a public-facing way, decide semver impact and update
-   `pubspec.yaml` plus `CHANGELOG.md` in the same change.
+6. If `lib/` changed in a public-facing way, decide semver impact and note it
+   in the commit or PR body, but leave `pubspec.yaml` and `CHANGELOG.md`
+   unchanged until the publishing flow.
 7. Keep `README.md` and `example/` aligned with any public API or behavior
    change.
 

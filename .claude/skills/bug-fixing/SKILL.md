@@ -27,7 +27,8 @@ limits, wheel-selection issues, or theme-specific rendering bugs.
 - Preserve the published public API unless the task explicitly requires a
   breaking change.
 - If a public-facing behavior change lands in `lib/`, decide semver impact and
-  update `CHANGELOG.md` in the same change.
+  note it in the commit or PR body; leave `pubspec.yaml` and `CHANGELOG.md`
+  unchanged until the publishing flow.
 
 ## Read These
 
