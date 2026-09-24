@@ -4,7 +4,9 @@ Thanks for considering a contribution to `scroll_wheel_date_picker` — a publis
 
 ## Before you start
 
-Read [AGENTS.md](AGENTS.md) and [CLAUDE.md](CLAUDE.md). They cover architecture, git conventions, API/semver rules, and policies that apply to all contributors, not just AI agents.
+This package is published on pub.dev and public on GitHub. Keep changes
+public-safe, small, and aligned with the existing widget/controller/theme
+structure.
 
 ## Setup
 
@@ -32,8 +34,6 @@ A PR failing any of these won't be merged.
 - Three scroll wheels (day/month/year) are independent; changes in one recompute ranges in others (e.g., selecting February 29 in a leap year). Understand how `DateController` propagates these changes via `ListenableBuilder`.
 - `FlatScrollWheel` does not use Flutter's `ListWheelScrollView` — it's built on `FlatWheelScrollView` in `lib/src/widgets/flat_wheel_scroll_view.dart`, a custom scroll view with real behavioral differences from the curve variant. Bug fixes that touch only one variant may miss the other.
 
-See [CLAUDE.md](CLAUDE.md#architecture) for full architecture details.
-
 ## Public API changes
 
 This package is live on pub.dev; changes to exports in `lib/scroll_wheel_date_picker.dart` are **public API changes**:
@@ -43,10 +43,10 @@ This package is live on pub.dev; changes to exports in `lib/scroll_wheel_date_pi
 - **Non-API (patch/none):** Internal refactors, tests, docs, CI config, lints. No version bump needed.
 
 For any public API change:
-1. Bump `version` in `pubspec.yaml` (`x.y.z+build` format).
-2. Add an entry at the top of `CHANGELOG.md` (see existing entries for format).
-3. Update `example/` if the API changed so it still builds.
-4. Mention the semver bump and CHANGELOG entry in the commit body (see [AGENTS.md](AGENTS.md) for publishing details).
+1. Do not bump `version` in `pubspec.yaml` during normal feature or fix work.
+2. Do not edit `CHANGELOG.md`; release tooling handles changelog updates.
+3. Update `README.md` and `example/` if the API changed so they stay accurate.
+4. Mention the semver impact in the commit body.
 
 ## Code style and patterns
 
@@ -54,8 +54,6 @@ For any public API change:
 - Lints: `flutter_lints` via `analysis_options.yaml` — keep it passing, don't add ignores without reason.
 
 ## Git and pull request conventions
-
-See [AGENTS.md](AGENTS.md) for full details. Quick reference:
 
 **Branch naming:** `<type>/<short-kebab-description>` (e.g., `feat/year-format`, `fix/loop-offset`).  
 Allowed types: `feat`, `fix`, `refactor`, `perf`, `docs`, `test`, `chore`, `build`, `ci`.

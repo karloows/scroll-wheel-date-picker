@@ -32,7 +32,7 @@ If this is internal-only (tests, docs, internal refactors, CI):
 - [ ] `flutter analyze` passes completely
 - [ ] `flutter test` passes completely
 - [ ] `dart format .` run (all code formatted)
-- [ ] Commits follow conventional commit format: `type(scope): summary` (see [AGENTS.md](../AGENTS.md))
+- [ ] Commits follow conventional commit format: `type(scope): summary`
 - [ ] Commit bodies explain the *why*, not just the *what*
 - [ ] `example/` builds and works (if API changed)
 - [ ] No unrelated changes mixed in (one PR = one logical change)
