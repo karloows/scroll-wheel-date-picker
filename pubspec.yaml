@@ -31,13 +31,3 @@ topics:
 screenshots:
   - description: Flat picker with holo overlay.
     path: demo/flat_holo.gif
-  - description: Flat picker with highlight overlay.
-    path: demo/flat_highlight.gif
-  - description: Flat picker with line overlay.
-    path: demo/flat_line.gif
-  - description: Curve picker with holo overlay.
-    path: demo/curve_holo.gif
-  - description: Curve picker with highlight overlay.
-    path: demo/curve_highlight.gif
-  - description: Curve picker with line overlay.
-    path: demo/curve_line.gif

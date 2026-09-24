@@ -4,7 +4,6 @@
 ### Documentation
 
 * expand README package docs and examples
-* document repo-specific ship and land workflow
 
 ## [0.1.2](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.1...v0.1.2) (2026-08-27)
 
@@ -38,7 +37,6 @@
 
 ### Bug Fixes
 
-* **agents:** guard ship workflow against committing on base branch ([#22](https://github.com/karloows/scroll-wheel-date-picker/issues/22)) ([b5882c8](https://github.com/karloows/scroll-wheel-date-picker/commit/b5882c8135d54e33122d4512f9a9b00f038ed8c5))
 * **controller:** fix December initial-date crash and scroll rebuild-during-build ([#24](https://github.com/karloows/scroll-wheel-date-picker/issues/24)) ([764254c](https://github.com/karloows/scroll-wheel-date-picker/commit/764254c5ba89efe1fbb3a50845947140dd21c3d4))
 * **dev:** drop version build number to stop release-please stacking it ([#33](https://github.com/karloows/scroll-wheel-date-picker/issues/33)) ([17bf56f](https://github.com/karloows/scroll-wheel-date-picker/commit/17bf56fd73413d9f4bb809b76fa10c838086dd7f))
 * **widgets:** fix offset-listener leak and wrong-direction boundary snap ([#30](https://github.com/karloows/scroll-wheel-date-picker/issues/30)) ([8d38ebc](https://github.com/karloows/scroll-wheel-date-picker/commit/8d38ebc564fb874c523abfdaa3351c0b1811ec31))
