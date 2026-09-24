@@ -1,3 +1,15 @@
+## [0.1.4](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.3...v0.1.4) (2026-09-24)
+
+
+### Documentation
+
+* remove repo-specific agent workflow files and references
+
+
+### Bug Fixes
+
+* limit pub.dev screenshots metadata to one preview
+
 ## [0.1.3](https://github.com/karloows/scroll-wheel-date-picker/compare/v0.1.2...v0.1.3) (2026-08-27)
 
 
